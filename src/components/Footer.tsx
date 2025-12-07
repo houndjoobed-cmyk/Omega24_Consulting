@@ -96,20 +96,20 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <img 
-              src={image_a3e94e1254122a1ce127e1521b608a1d24b5d21a} 
-              alt="OMEGA24 CONSULTING" 
+            <img
+              src={image_a3e94e1254122a1ce127e1521b608a1d24b5d21a}
+              alt="OMEGA24 CONSULTING"
               className="h-16 w-auto mb-4"
             />
             <p className="text-white/80 text-sm mb-4">
               Votre partenaire pour réaliser vos rêves d'études à l'étranger.
             </p>
             <div className="flex space-x-3">
-              <a href="#" className="w-8 h-8 bg-white/10 hover:bg-[#4DA6FF] rounded-full flex items-center justify-center transition-colors">
+              <a href="https://www.facebook.com/profile.php?id=61561081688272&locale=fr_FR" className="w-8 h-8 bg-white/10 hover:bg-[#4DA6FF] rounded-full flex items-center justify-center transition-colors">
                 <Facebook className="w-4 h-4" />
               </a>
-              <a href="#" className="w-8 h-8 bg-white/10 hover:bg-[#4DA6FF] rounded-full flex items-center justify-center transition-colors">
-                <Instagram className="w-4 h-4" />
+              <a href="mailto:omega24consulting@gmail.com" className="w-8 h-8 bg-white/10 hover:bg-[#4DA6FF] rounded-full flex items-center justify-center transition-colors">
+                <Mail className="w-4 h-4" />
               </a>
               <a href="#" className="w-8 h-8 bg-white/10 hover:bg-[#4DA6FF] rounded-full flex items-center justify-center transition-colors">
                 <Twitter className="w-4 h-4" />
@@ -229,20 +229,20 @@ export function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/60">
             <p>© {new Date().getFullYear()} OMEGA24 CONSULTING. Tous droits réservés.</p>
             <div className="flex gap-6">
-              <button 
-                className="hover:text-[#4DA6FF] transition-colors" 
+              <button
+                className="hover:text-[#4DA6FF] transition-colors"
                 onClick={(e) => { e.preventDefault(); setShowMentionsLegales(true); }}
               >
                 Mentions Légales
               </button>
-              <button 
-                className="hover:text-[#4DA6FF] transition-colors" 
+              <button
+                className="hover:text-[#4DA6FF] transition-colors"
                 onClick={(e) => { e.preventDefault(); setShowPolitique(true); }}
               >
                 Politique de Confidentialité
               </button>
-              <button 
-                className="hover:text-[#4DA6FF] transition-colors" 
+              <button
+                className="hover:text-[#4DA6FF] transition-colors"
                 onClick={(e) => { e.preventDefault(); setShowCGV(true); }}
               >
                 CGV
