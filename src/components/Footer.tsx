@@ -11,18 +11,15 @@ import { CGV } from './CGV';
 // Composant pays mémorisé pour éviter les re-rendus
 const CountryCard = memo(function CountryCard({ name, flag }: { name: string; flag: string }) {
   return (
-    <div
-      className="flex-shrink-0 text-center group cursor-pointer"
-      style={{ minWidth: '120px' }}
-    >
-      <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 group-hover:border-[#4DA6FF] group-hover:bg-white/10 transition-all duration-300 group-hover:scale-110 will-change-transform">
+    <div className="text-center group cursor-pointer w-[90px] sm:w-[100px] md:w-[120px]">
+      <div className="bg-white/5 backdrop-blur-sm rounded-xl p-3 sm:p-4 md:p-5 border border-white/10 group-hover:border-[#4DA6FF] group-hover:bg-white/10 transition-all duration-300 group-hover:scale-105">
         <div
-          className="text-7xl mb-3 transform group-hover:scale-125 group-hover:rotate-6 transition-transform duration-300"
+          className="text-3xl sm:text-4xl md:text-5xl mb-1 sm:mb-2 transform group-hover:scale-110 transition-transform duration-300"
           style={{ filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))' }}
         >
           {flag}
         </div>
-        <p className="text-xs text-white/90 group-hover:text-[#4DA6FF] transition-colors">
+        <p className="text-[10px] sm:text-xs text-white/90 group-hover:text-[#4DA6FF] transition-colors truncate">
           {name}
         </p>
       </div>
@@ -77,21 +74,17 @@ export function Footer() {
   return (
     <footer className="bg-[#002F6C] text-white">
       {/* Countries Flags Section */}
-      <div className="bg-[#001F4D] py-12 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
+      <div className="bg-[#001F4D] py-8 sm:py-12 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h4 className="text-center mb-2">Nous Opérons Dans Ces Pays</h4>
-          <p className="text-center text-white/70 text-sm">Une présence internationale pour mieux vous servir</p>
+          <p className="text-center text-white/70 text-sm mb-6 sm:mb-8">Une présence internationale pour mieux vous servir</p>
         </div>
-        <div className="relative">
-          {/* Scrolling Animation - optimized with will-change */}
-          <div className="flex animate-scroll gap-8" style={{ willChange: 'transform' }}>
-            {/* First Set */}
+
+        {/* Ligne horizontale unique avec scroll */}
+        <div className="overflow-x-auto pb-4 scrollbar-hide">
+          <div className="flex justify-center gap-2 sm:gap-3 md:gap-4 px-4 min-w-max mx-auto">
             {COUNTRIES.map((country, index) => (
-              <CountryCard key={`first-${index}`} name={country.name} flag={country.flag} />
-            ))}
-            {/* Duplicate Set for Seamless Loop */}
-            {COUNTRIES.map((country, index) => (
-              <CountryCard key={`second-${index}`} name={country.name} flag={country.flag} />
+              <CountryCard key={index} name={country.name} flag={country.flag} />
             ))}
           </div>
         </div>
