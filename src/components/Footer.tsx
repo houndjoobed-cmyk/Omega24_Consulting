@@ -1,13 +1,55 @@
 import image_a3e94e1254122a1ce127e1521b608a1d24b5d21a from 'figma:asset/a3e94e1254122a1ce127e1521b608a1d24b5d21a.png';
-import { Facebook, Instagram, Twitter, Linkedin, Mail, Phone, Shield, Lock, User, LogOut } from 'lucide-react';
-import logoImage from 'figma:asset/a3e94e1254122a1ce127e1521b608a1d24b5d21a.png';
-import { useState } from 'react';
+import { Facebook, Twitter, Linkedin, Mail, Phone, Lock, User, LogOut } from 'lucide-react';
+import { useState, useMemo, useCallback, memo } from 'react';
 import { AdminLogin } from './AdminLogin';
 import { useAuth } from '../contexts/AuthContext';
 import { Button } from './ui/button';
 import { MentionsLegales } from './MentionsLegales';
 import { PolitiqueConfidentialite } from './PolitiqueConfidentialite';
 import { CGV } from './CGV';
+
+// Composant pays mémorisé pour éviter les re-rendus
+const CountryCard = memo(function CountryCard({ name, flag }: { name: string; flag: string }) {
+  return (
+    <div
+      className="flex-shrink-0 text-center group cursor-pointer"
+      style={{ minWidth: '120px' }}
+    >
+      <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 group-hover:border-[#4DA6FF] group-hover:bg-white/10 transition-all duration-300 group-hover:scale-110 will-change-transform">
+        <div
+          className="text-7xl mb-3 transform group-hover:scale-125 group-hover:rotate-6 transition-transform duration-300"
+          style={{ filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))' }}
+        >
+          {flag}
+        </div>
+        <p className="text-xs text-white/90 group-hover:text-[#4DA6FF] transition-colors">
+          {name}
+        </p>
+      </div>
+    </div>
+  );
+});
+
+// Données des pays - en dehors du composant pour éviter les re-créations
+const COUNTRIES = [
+  { name: 'Canada', flag: '🇨🇦' },
+  { name: 'États-Unis', flag: '🇺🇸' },
+  { name: 'France', flag: '🇫🇷' },
+  { name: 'Belgique', flag: '🇧🇪' },
+  { name: 'Russie', flag: '🇷🇺' },
+  { name: 'Brésil', flag: '🇧🇷' },
+  { name: 'Luxembourg', flag: '🇱🇺' },
+  { name: 'Turquie', flag: '🇹🇷' },
+  { name: 'Allemagne', flag: '🇩🇪' },
+  { name: 'Roumanie', flag: '🇷🇴' },
+  { name: 'Irlande', flag: '🇮🇪' },
+  { name: 'Suède', flag: '🇸🇪' },
+  { name: 'Pologne', flag: '🇵🇱' },
+  { name: 'Slovaquie', flag: '🇸🇰' },
+  { name: 'République Tchèque', flag: '🇨🇿' },
+  { name: 'Serbie', flag: '🇷🇸' },
+  { name: 'Bulgarie', flag: '🇧🇬' }
+] as const;
 
 export function Footer() {
   const [showAdminLogin, setShowAdminLogin] = useState(false);
@@ -16,31 +58,21 @@ export function Footer() {
   const [showCGV, setShowCGV] = useState(false);
   const { isAuthenticated, user, logout } = useAuth();
 
-  const handleLogout = () => {
+  const handleLogout = useCallback(() => {
     if (confirm('Voulez-vous vraiment vous déconnecter ?')) {
       logout();
     }
-  };
+  }, [logout]);
 
-  const countries = [
-    { name: 'Canada', flag: '🇨🇦' },
-    { name: 'États-Unis', flag: '🇺🇸' },
-    { name: 'France', flag: '🇫🇷' },
-    { name: 'Belgique', flag: '🇧🇪' },
-    { name: 'Russie', flag: '🇷🇺' },
-    { name: 'Brésil', flag: '🇧🇷' },
-    { name: 'Luxembourg', flag: '🇱🇺' },
-    { name: 'Turquie', flag: '🇹🇷' },
-    { name: 'Allemagne', flag: '🇩🇪' },
-    { name: 'Roumanie', flag: '🇷🇴' },
-    { name: 'Irlande', flag: '🇮🇪' },
-    { name: 'Suède', flag: '🇸🇪' },
-    { name: 'Pologne', flag: '🇵🇱' },
-    { name: 'Slovaquie', flag: '🇸🇰' },
-    { name: 'République Tchèque', flag: '🇨🇿' },
-    { name: 'Serbie', flag: '🇷🇸' },
-    { name: 'Bulgarie', flag: '🇧🇬' }
-  ];
+  // Mémoriser les handlers pour éviter les re-rendus
+  const openAdminLogin = useCallback(() => setShowAdminLogin(true), []);
+  const closeAdminLogin = useCallback(() => setShowAdminLogin(false), []);
+  const openMentionsLegales = useCallback(() => setShowMentionsLegales(true), []);
+  const closeMentionsLegales = useCallback(() => setShowMentionsLegales(false), []);
+  const openPolitique = useCallback(() => setShowPolitique(true), []);
+  const closePolitique = useCallback(() => setShowPolitique(false), []);
+  const openCGV = useCallback(() => setShowCGV(true), []);
+  const closeCGV = useCallback(() => setShowCGV(false), []);
 
   return (
     <footer className="bg-[#002F6C] text-white">
@@ -51,41 +83,15 @@ export function Footer() {
           <p className="text-center text-white/70 text-sm">Une présence internationale pour mieux vous servir</p>
         </div>
         <div className="relative">
-          {/* Scrolling Animation */}
-          <div className="flex animate-scroll gap-8">
+          {/* Scrolling Animation - optimized with will-change */}
+          <div className="flex animate-scroll gap-8" style={{ willChange: 'transform' }}>
             {/* First Set */}
-            {countries.map((country, index) => (
-              <div
-                key={`first-${index}`}
-                className="flex-shrink-0 text-center group cursor-pointer"
-                style={{ minWidth: '120px' }}
-              >
-                <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 group-hover:border-[#4DA6FF] group-hover:bg-white/10 transition-all duration-300 group-hover:scale-110 group-hover:shadow-2xl">
-                  <div className="text-7xl mb-3 transform group-hover:scale-125 group-hover:rotate-6 transition-all duration-300" style={{ filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))' }}>
-                    {country.flag}
-                  </div>
-                  <p className="text-xs text-white/90 group-hover:text-[#4DA6FF] transition-colors">
-                    {country.name}
-                  </p>
-                </div>
-              </div>
+            {COUNTRIES.map((country, index) => (
+              <CountryCard key={`first-${index}`} name={country.name} flag={country.flag} />
             ))}
             {/* Duplicate Set for Seamless Loop */}
-            {countries.map((country, index) => (
-              <div
-                key={`second-${index}`}
-                className="flex-shrink-0 text-center group cursor-pointer"
-                style={{ minWidth: '120px' }}
-              >
-                <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 group-hover:border-[#4DA6FF] group-hover:bg-white/10 transition-all duration-300 group-hover:scale-110 group-hover:shadow-2xl">
-                  <div className="text-7xl mb-3 transform group-hover:scale-125 group-hover:rotate-6 transition-all duration-300" style={{ filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))' }}>
-                    {country.flag}
-                  </div>
-                  <p className="text-xs text-white/90 group-hover:text-[#4DA6FF] transition-colors">
-                    {country.name}
-                  </p>
-                </div>
-              </div>
+            {COUNTRIES.map((country, index) => (
+              <CountryCard key={`second-${index}`} name={country.name} flag={country.flag} />
             ))}
           </div>
         </div>
@@ -214,7 +220,7 @@ export function Footer() {
               </div>
             ) : (
               <Button
-                onClick={() => setShowAdminLogin(true)}
+                onClick={openAdminLogin}
                 className="bg-white/10 hover:bg-[#4DA6FF] text-white border border-white/20 backdrop-blur-sm"
               >
                 <Lock className="w-4 h-4 mr-2" />
@@ -231,19 +237,19 @@ export function Footer() {
             <div className="flex gap-6">
               <button
                 className="hover:text-[#4DA6FF] transition-colors"
-                onClick={(e) => { e.preventDefault(); setShowMentionsLegales(true); }}
+                onClick={openMentionsLegales}
               >
                 Mentions Légales
               </button>
               <button
                 className="hover:text-[#4DA6FF] transition-colors"
-                onClick={(e) => { e.preventDefault(); setShowPolitique(true); }}
+                onClick={openPolitique}
               >
                 Politique de Confidentialité
               </button>
               <button
                 className="hover:text-[#4DA6FF] transition-colors"
-                onClick={(e) => { e.preventDefault(); setShowCGV(true); }}
+                onClick={openCGV}
               >
                 CGV
               </button>
@@ -254,22 +260,22 @@ export function Footer() {
 
       {/* Admin Login Modal */}
       {showAdminLogin && (
-        <AdminLogin onClose={() => setShowAdminLogin(false)} />
+        <AdminLogin onClose={closeAdminLogin} />
       )}
 
       {/* Mentions Legales Modal */}
       {showMentionsLegales && (
-        <MentionsLegales onClose={() => setShowMentionsLegales(false)} />
+        <MentionsLegales onClose={closeMentionsLegales} />
       )}
 
       {/* Politique Confidentialite Modal */}
       {showPolitique && (
-        <PolitiqueConfidentialite onClose={() => setShowPolitique(false)} />
+        <PolitiqueConfidentialite onClose={closePolitique} />
       )}
 
       {/* CGV Modal */}
       {showCGV && (
-        <CGV onClose={() => setShowCGV(false)} />
+        <CGV onClose={closeCGV} />
       )}
     </footer>
   );

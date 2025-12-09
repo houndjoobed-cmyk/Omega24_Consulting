@@ -1,0 +1,220 @@
+/* =====================================================
+   PERFORMANCE OPTIMIZATIONS CSS
+   ===================================================== */
+
+/* GPU Acceleration for smooth animations */
+.animate-scroll,
+.transition-all,
+.transition-transform,
+.transition-colors,
+.transition-opacity,
+.transition-shadow {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Optimize hover effects */
+.group:hover .group-hover\:scale-110,
+.group:hover .group-hover\:scale-125,
+.hover\:scale-105:hover,
+.hover\:scale-110:hover {
+  will-change: transform;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .animate-scroll {
+    animation: none !important;
+  }
+}
+
+/* Smooth scrolling optimization */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Footer countries scrolling animation - optimized */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+  will-change: transform;
+}
+
+/* Pause animation on hover for better interaction */
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
+
+/* Image loading optimization */
+img {
+  content-visibility: auto;
+}
+
+img[loading="lazy"] {
+  contain-intrinsic-size: 300px 200px;
+}
+
+/* Optimized focus states */
+:focus-visible {
+  outline: 2px solid #4DA6FF;
+  outline-offset: 2px;
+}
+
+/* Content visibility optimization for sections */
+section {
+  content-visibility: auto;
+  contain-intrinsic-block-size: 500px;
+}
+
+/* Optimize font rendering */
+body {
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-rendering: optimizeLegibility;
+}
+
+/* Button press feedback for better perceived performance */
+button,
+[role="button"] {
+  touch-action: manipulation;
+}
+
+button:active,
+[role="button"]:active {
+  transform: scale(0.98);
+  transition: transform 0.1s ease-out;
+}
+
+/* Skeleton loading styles */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Hardware acceleration for transforms */
+.transform,
+[class*="translate-"],
+[class*="rotate-"],
+[class*="scale-"] {
+  transform-style: preserve-3d;
+}
+
+/* Optimize box shadows for performance */
+.shadow-lg,
+.shadow-xl,
+.shadow-2xl,
+.hover\:shadow-lg:hover,
+.hover\:shadow-xl:hover,
+.hover\:shadow-2xl:hover {
+  will-change: box-shadow;
+}
+
+/* Intersection Observer fade-in animation */
+.fade-in-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Optimize backdrop blur */
+.backdrop-blur-sm,
+.backdrop-blur {
+  will-change: backdrop-filter;
+}
+
+/* Loading states */
+.loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* Smooth image loading */
+img {
+  transition: opacity 0.3s ease-in-out;
+}
+
+img.loading {
+  opacity: 0;
+}
+
+img.loaded {
+  opacity: 1;
+}
+
+/* Optimize sticky header */
+.sticky {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Mobile touch optimization */
+@media (hover: none) and (pointer: coarse) {
+  /* Remove hover effects on touch devices for better performance */
+  .hover\:shadow-lg:hover {
+    box-shadow: none;
+  }
+  
+  /* Larger touch targets */
+  button,
+  a,
+  [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Print optimization */
+@media print {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

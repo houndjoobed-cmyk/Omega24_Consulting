@@ -1,14 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Omega24 Consulting</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+  <!-- SEO Meta Tags -->
+  <title>OMEGA24 CONSULTING - Études à l'Étranger, Assurance & Billeterie au Bénin</title>
+  <meta name="description"
+    content="OMEGA24 CONSULTING vous accompagne dans vos projets d'études à l'étranger, assurance voyage, billeterie aérienne. Votre partenaire de confiance au Bénin." />
+  <meta name="keywords"
+    content="études étranger, visa, université, Canada, France, assurance voyage, billeterie, Bénin, consulting" />
+  <meta name="author" content="OMEGA24 CONSULTING" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="OMEGA24 CONSULTING - Études à l'Étranger" />
+  <meta property="og:description"
+    content="Votre partenaire pour réaliser vos rêves d'études à l'étranger. Accompagnement complet : orientation, admission, visa, logement." />
+  <meta property="og:locale" content="fr_FR" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="OMEGA24 CONSULTING" />
+  <meta name="twitter:description" content="Réalisez vos rêves d'études à l'étranger avec OMEGA24 CONSULTING" />
+
+  <!-- Performance: Preconnect to external resources -->
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
+  <link rel="dns-prefetch" href="https://images.unsplash.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+
+  <!-- Supabase preconnect -->
+  <link rel="preconnect" href="https://vvjtaizivjfpqtwyjuby.supabase.co" crossorigin />
+  <link rel="dns-prefetch" href="https://vvjtaizivjfpqtwyjuby.supabase.co" />
+
+  <!-- Theme Color -->
+  <meta name="theme-color" content="#002F6C" />
+  <meta name="msapplication-navbutton-color" content="#002F6C" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="#002F6C" />
+
+  <!-- Mobile App Capable -->
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+
+  <!-- Prevent FOUC (Flash of Unstyled Content) -->
+  <style>
+    html {
+      visibility: hidden;
+      opacity: 0;
+    }
+  </style>
 </head>
 
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <!-- Loading skeleton for better perceived performance -->
+    <div
+      style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #002F6C 0%, #4DA6FF 100%);">
+      <div style="text-align: center; color: white;">
+        <div
+          style="width: 48px; height: 48px; border: 4px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 16px;">
+        </div>
+        <p style="font-family: system-ui, sans-serif; font-size: 14px; opacity: 0.8;">Chargement...</p>
+      </div>
+    </div>
+    <style>
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </div>
+
+  <!-- Defer non-critical styles reveal -->
+  <script>
+    document.documentElement.style.visibility = 'visible';
+    document.documentElement.style.opacity = '1';
+  </script>
+
   <script type="module" src="/src/main.tsx"></script>
 </body>
 
