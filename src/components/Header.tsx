@@ -7,7 +7,7 @@ export function Header() {
 
   const navLinks = [
     { href: '#accueil', label: 'Accueil' },
-    { href: '#cequenoousproposons', label: 'Ce que nous proposons' },
+    { href: '#cequenoousproposons', label: 'Ce Que Nous Proposons' },
     { href: '#services', label: 'Nos Services' },
     { href: '#temoignages', label: 'Témoignages' },
     { href: '#apropos', label: 'À Propos' },
@@ -20,9 +20,9 @@ export function Header() {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center">
-            <img 
-              src={logoImage} 
-              alt="OMEGA24 CONSULTING" 
+            <img
+              src={logoImage}
+              alt="OMEGA24 CONSULTING"
               className="h-30 w-auto animate-float"
             />
           </div>

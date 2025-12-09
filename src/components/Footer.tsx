@@ -1,5 +1,5 @@
 import image_a3e94e1254122a1ce127e1521b608a1d24b5d21a from 'figma:asset/a3e94e1254122a1ce127e1521b608a1d24b5d21a.png';
-import { Facebook, Twitter, Linkedin, Mail, Phone, Lock, User, LogOut } from 'lucide-react';
+import { Facebook, Linkedin, Mail, Phone, Lock, User, LogOut } from 'lucide-react';
 import { useState, useMemo, useCallback, memo } from 'react';
 import { AdminLogin } from './AdminLogin';
 import { useAuth } from '../contexts/AuthContext';
@@ -124,8 +124,10 @@ export function Footer() {
               <a href="mailto:omega24consulting@gmail.com" className="w-8 h-8 bg-white/10 hover:bg-[#4DA6FF] rounded-full flex items-center justify-center transition-colors">
                 <Mail className="w-4 h-4" />
               </a>
-              <a href="#" className="w-8 h-8 bg-white/10 hover:bg-[#4DA6FF] rounded-full flex items-center justify-center transition-colors">
-                <Twitter className="w-4 h-4" />
+              <a href="https://vm.tiktok.com/ZMHwSjHtVF69t-289WW/" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-white/10 hover:bg-[#4DA6FF] rounded-full flex items-center justify-center transition-colors">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+                  <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+                </svg>
               </a>
               <a href="#" className="w-8 h-8 bg-white/10 hover:bg-[#4DA6FF] rounded-full flex items-center justify-center transition-colors">
                 <Linkedin className="w-4 h-4" />
@@ -144,7 +146,7 @@ export function Footer() {
               </li>
               <li>
                 <a href="#cequenoousproposons" className="text-white/80 hover:text-[#4DA6FF] transition-colors">
-                  Ce que nous proposons
+                  Ce Que Nous Proposons
                 </a>
               </li>
               <li>
