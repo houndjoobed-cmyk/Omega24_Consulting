@@ -74,15 +74,29 @@ export function Footer() {
   return (
     <footer className="bg-[#002F6C] text-white">
       {/* Countries Flags Section */}
-      <div className="bg-[#001F4D] py-8 sm:py-12 overflow-hidden">
+      <div className="bg-[#001F4D] py-8 sm:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h4 className="text-center mb-2">Nous Opérons Dans Ces Pays</h4>
           <p className="text-center text-white/70 text-sm mb-6 sm:mb-8">Une présence internationale pour mieux vous servir</p>
         </div>
 
         {/* Ligne horizontale unique avec scroll */}
-        <div className="overflow-x-auto pb-4 scrollbar-hide">
-          <div className="flex justify-center gap-2 sm:gap-3 md:gap-4 px-4 min-w-max mx-auto">
+        <div
+          className="scrollbar-hide"
+          style={{
+            overflowX: 'auto',
+            overflowY: 'hidden',
+            WebkitOverflowScrolling: 'touch',
+            paddingBottom: '1rem'
+          }}
+        >
+          <div
+            className="flex gap-2 sm:gap-3 md:gap-4 px-4"
+            style={{
+              width: 'max-content',
+              margin: '0 auto'
+            }}
+          >
             {COUNTRIES.map((country, index) => (
               <CountryCard key={index} name={country.name} flag={country.flag} />
             ))}
