@@ -19,7 +19,7 @@ export function FlyerCard({ flyer, onEdit, onDelete, onView }: FlyerCardProps) {
           alt={flyer.title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         />
-        
+
         {/* Overlay on hover */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#002F6C]/90 via-[#002F6C]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
           <div className="w-full">
@@ -31,9 +31,8 @@ export function FlyerCard({ flyer, onEdit, onDelete, onView }: FlyerCardProps) {
             </p>
             <Button
               onClick={() => onView(flyer)}
-              variant="secondary"
-              size="sm"
-              className="w-full bg-white text-[#002F6C] hover:bg-gray-100"
+              variant="outline"
+              className="w-full bg-transparent text-white border-white hover:bg-white hover:text-[#002F6C] transition-all duration-300"
             >
               <Eye className="w-4 h-4 mr-2" />
               Voir les détails
@@ -50,7 +49,7 @@ export function FlyerCard({ flyer, onEdit, onDelete, onView }: FlyerCardProps) {
         <p className="text-gray-600 text-sm line-clamp-2 mb-4">
           {flyer.description}
         </p>
-        
+
         {/* Admin Actions - Only show if onEdit and onDelete are provided */}
         {(onEdit || onDelete) && (
           <div className="flex gap-2">
