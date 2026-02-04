@@ -19,8 +19,8 @@ export function WhatWeOffer() {
     {
       icon: Briefcase,
       title: 'Recherche de Contrat de Travail',
-      description: 'Accompagnement pour trouver un contrat de travail dans 9 pays',
-      countries: ['Allemagne', 'Suède', 'Pologne', 'Slovaquie', 'République Tchèque', 'Roumanie', 'Serbie', 'Canada', 'Bulgarie'],
+      description: 'Accompagnement pour trouver un contrat de travail dans 13 pays',
+      countries: ['Allemagne', 'Suède', 'Pologne', 'Slovaquie', 'République Tchèque', 'Roumanie', 'Serbie', 'Canada', 'Bulgarie', 'Qatar', 'Hongrie', 'Biélorussie', 'Ukraine'],
       color: '#002F6C'
     },
     {
@@ -34,7 +34,7 @@ export function WhatWeOffer() {
       icon: Shield,
       title: 'Assurance',
       description: 'Tous types d\'assurances pour vous protéger et sécuriser votre avenir',
-      features: ['Assurance Santé & Vie', 'Assurance Voyage', 'Assurance Auto et Moto', 'Assurance Habitation','Assurance Tous Risques'],
+      features: ['Assurance Santé & Vie', 'Assurance Voyage', 'Assurance Auto et Moto', 'Assurance Habitation', 'Assurance Tous Risques'],
       color: '#002F6C'
     },
     {
@@ -82,7 +82,7 @@ export function WhatWeOffer() {
             Ce Que Nous Proposons
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-            OMEGA24 CONSULTING vous offre une gamme complète de services pour 
+            OMEGA24 CONSULTING vous offre une gamme complète de services pour
             accompagner tous vos projets personnels et professionnels.
           </p>
         </div>
@@ -97,17 +97,17 @@ export function WhatWeOffer() {
                 className="bg-[#F4F4F4] rounded-lg p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 animate-fade-in-up"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div 
+                <div
                   className="w-16 h-16 rounded-lg flex items-center justify-center mb-6"
                   style={{ backgroundColor: offer.color }}
                 >
                   <Icon className="w-8 h-8 text-white" />
                 </div>
-                
+
                 <h3 className="text-[#002F6C] mb-3">
                   {offer.title}
                 </h3>
-                
+
                 <p className="text-gray-600 mb-4">
                   {offer.description}
                 </p>
@@ -119,7 +119,7 @@ export function WhatWeOffer() {
                     </p>
                     <div className="flex flex-wrap gap-2">
                       {offer.countries.map((country, idx) => (
-                        <span 
+                        <span
                           key={idx}
                           className="text-xs bg-white px-3 py-1 rounded-full text-gray-700"
                         >
@@ -151,7 +151,7 @@ export function WhatWeOffer() {
             Besoin d'un Service Personnalisé ?
           </h3>
           <p className="text-white/90 text-lg mb-6 max-w-2xl mx-auto">
-            Contactez-nous pour discuter de votre projet et découvrir comment 
+            Contactez-nous pour discuter de votre projet et découvrir comment
             nous pouvons vous accompagner dans sa réalisation.
           </p>
           <button
