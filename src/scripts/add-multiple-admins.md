@@ -481,4 +481,4 @@ En cas de problème lors de l'ajout d'admin :
 
 **Date :** 26 Novembre 2025  
 **Version :** 1.0  
-**Contact :** omega24consulting@gmail.com
+**Contact :** info@omega24consulting.com

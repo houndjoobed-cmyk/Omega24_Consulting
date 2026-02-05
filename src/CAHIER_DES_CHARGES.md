@@ -491,13 +491,13 @@ Outline : border-[#002F6C] hover:bg-[#002F6C]
   - Message (requis, min 10 caractères)
 - Validation côté client
 - Feedback visuel (loading, success, error)
-- Email automatique à omega24consulting@gmail.com
+- Email automatique à info@omega24consulting.com
 - Sauvegarde en base de données
 
 #### **Coordonnées**
 - 📍 Adresse : Cotonou, Bénin
 - 📞 Téléphones : +229 01 41 31 22 22 / +229 01 90 57 42 42
-- 📧 Email : omega24consulting@gmail.com
+- 📧 Email : info@omega24consulting.com
 - 🔗 Réseaux sociaux (Facebook, Instagram, Twitter, LinkedIn)
 
 ### 7.6 Footer

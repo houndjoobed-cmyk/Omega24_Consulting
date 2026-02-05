@@ -31,9 +31,9 @@ export function CGV({ onClose }: CGVProps) {
           <section>
             <div className="bg-blue-50 border-l-4 border-[#4DA6FF] p-4 rounded">
               <p className="text-gray-700">
-                Les présentes Conditions Générales de Vente (CGV) régissent les relations 
-                contractuelles entre OMEGA24 CONSULTING et ses clients dans le cadre de 
-                la fourniture de services de consulting éducatif, d'accompagnement aux études 
+                Les présentes Conditions Générales de Vente (CGV) régissent les relations
+                contractuelles entre OMEGA24 CONSULTING et ses clients dans le cadre de
+                la fourniture de services de consulting éducatif, d'accompagnement aux études
                 à l'étranger et de services connexes.
               </p>
             </div>
@@ -45,11 +45,11 @@ export function CGV({ onClose }: CGVProps) {
               <CheckCircle className="w-6 h-6 text-[#4DA6FF]" />
               <h3 className="text-xl text-[#002F6C]">1. Objet et Champ d'Application</h3>
             </div>
-            
+
             <p className="text-gray-700 mb-3">
               Les présentes CGV s'appliquent à tous les services proposés par OMEGA24 CONSULTING :
             </p>
-            
+
             <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4">
               <li>Accompagnement aux études à l'étranger</li>
               <li>Recherche et placement en contrat de travail</li>
@@ -67,7 +67,7 @@ export function CGV({ onClose }: CGVProps) {
           {/* Article 2 */}
           <section>
             <h3 className="text-xl text-[#002F6C] mb-3">2. Prestations de Services</h3>
-            
+
             <h4 className="font-semibold text-[#002F6C] mt-4 mb-2">2.1. Accompagnement aux Études</h4>
             <div className="bg-gray-50 p-4 rounded-lg space-y-2">
               <p className="text-gray-700">Nos services incluent :</p>
@@ -87,10 +87,10 @@ export function CGV({ onClose }: CGVProps) {
               <CreditCard className="w-6 h-6 text-[#4DA6FF]" />
               <h3 className="text-xl text-[#002F6C]">3. Tarifs et Modalités de Paiement</h3>
             </div>
-            
+
             <h4 className="font-semibold text-[#002F6C] mt-4 mb-2">3.1. Tarification</h4>
             <p className="text-gray-700 mb-3">
-              Les tarifs de nos services sont indiqués en Francs CFA (XOF) et peuvent varier 
+              Les tarifs de nos services sont indiqués en Francs CFA (XOF) et peuvent varier
               selon la complexité du dossier, la destination et les services demandés.
             </p>
 
@@ -125,7 +125,7 @@ export function CGV({ onClose }: CGVProps) {
               <RefreshCw className="w-6 h-6 text-[#4DA6FF]" />
               <h3 className="text-xl text-[#002F6C]">4. Annulation et Remboursement</h3>
             </div>
-            
+
             <h4 className="font-semibold text-[#002F6C] mt-4 mb-2">4.1. Annulation par le Client</h4>
             <div className="space-y-2">
               <p className="text-gray-700">
@@ -155,7 +155,7 @@ export function CGV({ onClose }: CGVProps) {
               <AlertCircle className="w-6 h-6 text-[#4DA6FF]" />
               <h3 className="text-xl text-[#002F6C]">5. Responsabilité et Garanties</h3>
             </div>
-            
+
             <p className="text-gray-700 mb-3">
               OMEGA24 CONSULTING ne peut être tenu responsable :
             </p>
@@ -168,8 +168,8 @@ export function CGV({ onClose }: CGVProps) {
 
             <div className="bg-red-50 border border-red-200 p-4 rounded-lg mt-4">
               <p className="text-sm text-gray-700">
-                <strong>⚠️ Obligation de moyens :</strong> OMEGA24 CONSULTING s'engage 
-                à mettre en œuvre tous les moyens nécessaires pour la réussite du projet, 
+                <strong>⚠️ Obligation de moyens :</strong> OMEGA24 CONSULTING s'engage
+                à mettre en œuvre tous les moyens nécessaires pour la réussite du projet,
                 mais ne peut garantir un résultat qui dépend de décisions tierces.
               </p>
             </div>
@@ -179,7 +179,7 @@ export function CGV({ onClose }: CGVProps) {
           <section className="bg-[#002F6C] text-white p-6 rounded-lg">
             <h3 className="text-xl mb-3">Contact</h3>
             <p className="mb-3">Pour toute question concernant nos CGV :</p>
-            <p className="mb-1">📧 Email : omega24consulting@gmail.com</p>
+            <p className="mb-1">📧 Email : info@omega24consulting.com</p>
             <p className="mb-1">📞 Téléphone : +229 01 41 31 22 22</p>
             <p>📞 Téléphone : +229 01 90 57 42 42</p>
           </section>
@@ -187,10 +187,10 @@ export function CGV({ onClose }: CGVProps) {
           {/* Date de mise à jour */}
           <section className="pt-4 border-t border-gray-200">
             <p className="text-sm text-gray-500">
-              Dernière mise à jour : {new Date().toLocaleDateString('fr-FR', { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
+              Dernière mise à jour : {new Date().toLocaleDateString('fr-FR', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
               })}
             </p>
           </section>

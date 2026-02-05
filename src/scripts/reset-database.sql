@@ -76,7 +76,7 @@ INSERT INTO kv_store_27d76fd3 (key, value) VALUES (
       "Adresse : Gbèdjromèdé 2ème von à droite en quittant le carrefour 16 ampoules en allant vers le carrefour \"Vodafone\"",
       "Points de repère : Entre Carrefour Vodafone, Carrefour 16 ampoules, et Carrefour St Michel",
       "Téléphone : +229 01 41 312 222 / 01 90 574 242",
-      "Email : omega24consulting@gmail.com",
+      "Email : info@omega24consulting.com",
       "Horaires : Lun-Ven 9h-18h, Sam 10h-16h"
     ]
   }'::jsonb

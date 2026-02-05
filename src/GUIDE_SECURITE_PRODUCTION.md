@@ -894,7 +894,7 @@ rclone copy ~/backups/omega24 googledrive:omega24-backups
 1. **Changer TOUS les mots de passe :**
    - Admin Supabase
    - Comptes admin du site
-   - Email omega24consulting@gmail.com
+   - Email info@omega24consulting.com
    - Resend API
 
 2. **Révoquer les tokens :**
@@ -955,4 +955,4 @@ En appliquant **TOUTES** ces mesures de sécurité, le site OMEGA24 CONSULTING s
 
 **Document rédigé le :** 26 Novembre 2025  
 **Version :** 1.0  
-**Contact :** omega24consulting@gmail.com
+**Contact :** info@omega24consulting.com

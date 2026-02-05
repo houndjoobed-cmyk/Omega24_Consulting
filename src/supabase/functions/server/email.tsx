@@ -10,7 +10,7 @@ interface EmailData {
 
 export async function sendContactEmail(data: EmailData): Promise<{ success: boolean; error?: string }> {
   const resendApiKey = Deno.env.get('RESEND_API_KEY');
-  
+
   if (!resendApiKey) {
     console.error('RESEND_API_KEY not configured');
     return { success: false, error: 'Email service not configured' };
@@ -89,7 +89,7 @@ export async function sendContactEmail(data: EmailData): Promise<{ success: bool
       },
       body: JSON.stringify({
         from: 'OMEGA24 CONSULTING <onboarding@resend.dev>', // Resend's default sender for testing
-        to: ['omega24consulting@gmail.com'],
+        to: ['info@omega24consulting.com'],
         reply_to: data.email,
         subject: `🔔 Nouveau message : ${data.subject}`,
         html: emailBody

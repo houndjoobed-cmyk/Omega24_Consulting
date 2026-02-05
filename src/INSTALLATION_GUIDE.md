@@ -406,7 +406,7 @@ curl -X POST 'https://votre-projet.supabase.co/functions/v1/make-server-27d76fd3
 {"success":true}
 ```
 
-Vérifiez votre boîte email `omega24consulting@gmail.com` !
+Vérifiez votre boîte email `info@omega24consulting.com` !
 
 ---
 
@@ -590,7 +590,7 @@ Testez toutes les fonctionnalités sur le site en production :
 | Section Contact | `/#contact` | ⬜ |
 | Footer | - | ⬜ |
 | Formulaire de contact | Soumettre un message | ⬜ |
-| Email reçu | omega24consulting@gmail.com | ⬜ |
+| Email reçu | info@omega24consulting.com | ⬜ |
 | Mentions légales | Ouvrir le modal | ⬜ |
 | Politique confidentialité | Ouvrir le modal | ⬜ |
 | CGV | Ouvrir le modal | ⬜ |
@@ -737,7 +737,7 @@ curl -X POST 'https://api.resend.com/emails' \
   -H 'Content-Type: application/json' \
   -d '{
     "from": "onboarding@resend.dev",
-    "to": "omega24consulting@gmail.com",
+    "to": "info@omega24consulting.com",
     "subject": "Test",
     "html": "<p>Test</p>"
   }'

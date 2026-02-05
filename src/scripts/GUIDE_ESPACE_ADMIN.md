@@ -322,4 +322,4 @@ AVANT (Header - Ancien)          MAINTENANT (Footer - Nouveau)
 
 **Date :** 28 Novembre 2025  
 **Version :** 2.0  
-**Contact :** omega24consulting@gmail.com
+**Contact :** info@omega24consulting.com

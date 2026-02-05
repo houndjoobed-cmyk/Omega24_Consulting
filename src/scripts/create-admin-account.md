@@ -340,4 +340,4 @@ Une fois connecté, vous pourrez :
 
 **Date :** 26 Novembre 2025  
 **Version :** 1.0  
-**Contact :** omega24consulting@gmail.com
+**Contact :** info@omega24consulting.com

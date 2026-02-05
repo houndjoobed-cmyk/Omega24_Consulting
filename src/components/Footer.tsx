@@ -121,7 +121,7 @@ export function Footer() {
               <a href="https://www.facebook.com/profile.php?id=61561081688272&locale=fr_FR" className="w-8 h-8 bg-white/10 hover:bg-[#4DA6FF] rounded-full flex items-center justify-center transition-colors">
                 <Facebook className="w-4 h-4" />
               </a>
-              <a href="mailto:omega24consulting@gmail.com" className="w-8 h-8 bg-white/10 hover:bg-[#4DA6FF] rounded-full flex items-center justify-center transition-colors">
+              <a href="mailto:info@omega24consulting.com" className="w-8 h-8 bg-white/10 hover:bg-[#4DA6FF] rounded-full flex items-center justify-center transition-colors">
                 <Mail className="w-4 h-4" />
               </a>
               <a href="https://vm.tiktok.com/ZMHwSjHtVF69t-289WW/" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-white/10 hover:bg-[#4DA6FF] rounded-full flex items-center justify-center transition-colors">
@@ -202,7 +202,7 @@ export function Footer() {
               <li className="flex items-start gap-2">
                 <Mail className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#4DA6FF]" />
                 <span className="text-white/80 break-all">
-                  omega24consulting@gmail.com
+                  info@omega24consulting.com
                 </span>
               </li>
             </ul>
