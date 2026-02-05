@@ -2,11 +2,7 @@
       "name": "Omega24_Consulting",
       "version": "0.1.0",
       "private": true,
-      "overrides": {
-            "node-fetch": "2.6.7"
-      },
       "dependencies": {
-            "node-fetch": "2.6.7",
             "@radix-ui/react-accordion": "^1.2.3",
             "@radix-ui/react-alert-dialog": "^1.1.6",
             "@radix-ui/react-aspect-ratio": "^1.1.2",
@@ -57,7 +53,6 @@
             "@types/react": "^19.2.7",
             "@types/react-dom": "^19.2.3",
             "@vitejs/plugin-react-swc": "^3.10.2",
-            "supabase": "^2.65.6",
             "vite": "6.3.5"
       },
       "scripts": {
