@@ -70,12 +70,12 @@ npm run build    # Construire pour la production
 - ✅ Secret configuré dans Supabase
 - ✅ Test d'envoi réussi ✉️
 
-**Email de réception**: `info@omega24consulting.com`
+**Email de réception**: `infos@omega24consulting.com`
 
 **Fonctionnalité**:
 Lorsqu'un utilisateur envoie un message via le formulaire de contact:
 1. ✅ Le message est sauvegardé dans la base de données
-2. ✅ Un email est envoyé à `info@omega24consulting.com`
+2. ✅ Un email est envoyé à `infos@omega24consulting.com`
 3. ✅ L'email contient toutes les informations du contact
 
 ---
@@ -131,7 +131,7 @@ npm run dev
 1. Accédez à la section "Contact" sur le site
 2. Remplissez le formulaire
 3. Envoyez le message
-4. ✅ Vérifiez votre email `info@omega24consulting.com`
+4. ✅ Vérifiez votre email `infos@omega24consulting.com`
 
 ### **Accéder à l'Interface Admin**
 

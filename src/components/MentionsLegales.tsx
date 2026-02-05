@@ -29,7 +29,7 @@ export function MentionsLegales({ onClose }: MentionsLegalesProps) {
               <p><strong>Raison sociale :</strong> OMEGA24 CONSULTING</p>
               <p><strong>Forme juridique :</strong> Société de services</p>
               <p><strong>Siège social :</strong> Cotonou, Bénin</p>
-              <p><strong>Email :</strong> info@omega24consulting.com</p>
+              <p><strong>Email :</strong> infos@omega24consulting.com</p>
               <p><strong>Téléphone :</strong> +229 01 41 31 22 22 / +229 01 90 57 42 42</p>
             </div>
           </section>
@@ -128,7 +128,7 @@ export function MentionsLegales({ onClose }: MentionsLegalesProps) {
               Pour toute question concernant les mentions légales, vous pouvez nous contacter :
             </p>
             <div className="bg-[rgb(8,45,83)] p-4 rounded-lg space-y-2">
-              <p><strong>Email :</strong> info@omega24consulting.com</p>
+              <p><strong>Email :</strong> infos@omega24consulting.com</p>
               <p><strong>Téléphone :</strong> +229 01 41 31 22 22</p>
               <p><strong>Téléphone :</strong> +229 01 90 57 42 42</p>
             </div>

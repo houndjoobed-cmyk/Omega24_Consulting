@@ -135,7 +135,7 @@ CREATE TABLE kv_store_27d76fd3 (
 
 **Note** : Les messages sont à la fois :
 - ✅ **Sauvegardés dans la base** pour consultation par l'admin
-- ✅ **Envoyés par email** à info@omega24consulting.com via Resend API
+- ✅ **Envoyés par email** à infos@omega24consulting.com via Resend API
 
 ---
 
@@ -192,13 +192,13 @@ Le fichier `/supabase/functions/server/kv_store.tsx` expose ces fonctions :
 ### Configuration
 - **Service** : Resend API
 - **Variable d'environnement** : `RESEND_API_KEY`
-- **Email destinataire** : info@omega24consulting.com
+- **Email destinataire** : infos@omega24consulting.com
 - **Email expéditeur** : OMEGA24 CONSULTING <onboarding@resend.dev>
 
 ### Fonctionnalité
 Lorsqu'un utilisateur envoie un message via le formulaire de contact :
 1. ✅ Le message est **sauvegardé** dans la base (préfixe `contact:`)
-2. ✅ Un email est **envoyé** à info@omega24consulting.com
+2. ✅ Un email est **envoyé** à infos@omega24consulting.com
 3. ✅ L'email inclut un bouton "Répondre" qui répond directement au client
 
 ---

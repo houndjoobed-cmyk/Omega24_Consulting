@@ -179,7 +179,7 @@ export function CGV({ onClose }: CGVProps) {
           <section className="bg-[#002F6C] text-white p-6 rounded-lg">
             <h3 className="text-xl mb-3">Contact</h3>
             <p className="mb-3">Pour toute question concernant nos CGV :</p>
-            <p className="mb-1">📧 Email : info@omega24consulting.com</p>
+            <p className="mb-1">📧 Email : infos@omega24consulting.com</p>
             <p className="mb-1">📞 Téléphone : +229 01 41 31 22 22</p>
             <p>📞 Téléphone : +229 01 90 57 42 42</p>
           </section>

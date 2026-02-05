@@ -175,7 +175,7 @@ export function PolitiqueConfidentialite({ onClose }: PolitiqueConfidentialitePr
             <div className="mt-4 bg-yellow-50 border border-yellow-200 p-4 rounded-lg">
               <p className="text-sm text-gray-700">
                 <strong>Pour exercer vos droits :</strong> Contactez-nous à
-                <span className="text-[#4DA6FF]"> info@omega24consulting.com</span>.
+                <span className="text-[#4DA6FF]"> infos@omega24consulting.com</span>.
                 Nous vous répondrons sous 30 jours.
               </p>
             </div>
@@ -188,7 +188,7 @@ export function PolitiqueConfidentialite({ onClose }: PolitiqueConfidentialitePr
               <p className="mb-2">
                 <strong>Pour toute question concernant vos données personnelles :</strong>
               </p>
-              <p className="mb-1">📧 Email : info@omega24consulting.com</p>
+              <p className="mb-1">📧 Email : infos@omega24consulting.com</p>
               <p className="mb-1">📞 Téléphone : +229 01 41 31 22 22</p>
               <p>📞 Téléphone : +229 01 90 57 42 42</p>
             </div>

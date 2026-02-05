@@ -186,7 +186,7 @@ app.post('/make-server-27d76fd3/reset-database', async (c) => {
         details: [
           'Adresse : Gbèdjromèdé',
           'Téléphone : +229 01 41 312 222',
-          'Email : info@omega24consulting.com'
+          'Email : infos@omega24consulting.com'
         ]
       }
     ];
@@ -353,7 +353,7 @@ supabase db execute -f backup_20241126.sql
 Si vous rencontrez des problèmes :
 1. Consulter la section "Résolution de Problèmes"
 2. Vérifier les logs Supabase (Dashboard > Logs)
-3. Contacter : info@omega24consulting.com
+3. Contacter : infos@omega24consulting.com
 
 ---
 

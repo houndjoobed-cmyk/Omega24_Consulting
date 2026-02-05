@@ -32,7 +32,7 @@ async function testEmail() {
 
         if (response.ok) {
             console.log('✅ SUCCESS! Email envoyé avec succès!');
-            console.log('📬 Vérifiez votre boîte email: info@omega24consulting.com');
+            console.log('📬 Vérifiez votre boîte email: infos@omega24consulting.com');
             console.log('\nRéponse:', JSON.stringify(result, null, 2));
         } else {
             console.log('❌ ERREUR lors de l\'envoi:');

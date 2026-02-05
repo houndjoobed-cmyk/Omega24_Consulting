@@ -241,7 +241,7 @@ Sans cette configuration, le formulaire de contact **ne fonctionnera pas**.
    - Message : Ceci est un test
 4. Cliquer `Envoyer le message`
 5. ✅ Notification de succès doit apparaître
-6. Vérifier la réception dans info@omega24consulting.com
+6. Vérifier la réception dans infos@omega24consulting.com
 
 #### Via l'API Directement
 ```bash
@@ -670,7 +670,7 @@ curl -X POST https://vcblcaufhcgcggnzifln.supabase.co/functions/v1/make-server-2
 ### Tâches Régulières
 
 #### Quotidien
-- [ ] Vérifier les emails reçus (info@omega24consulting.com)
+- [ ] Vérifier les emails reçus (infos@omega24consulting.com)
 - [ ] Consulter les logs Supabase (erreurs)
 - [ ] Vérifier la disponibilité du site (uptime)
 
@@ -764,7 +764,7 @@ curl -X POST https://api.resend.com/emails \
   -H "Content-Type: application/json" \
   -d '{
     "from": "onboarding@resend.dev",
-    "to": ["info@omega24consulting.com"],
+    "to": ["infos@omega24consulting.com"],
     "subject": "Test",
     "html": "<p>Test</p>"
   }'
@@ -918,7 +918,7 @@ npm run build
 - **Resend :** https://resend.com/docs
 
 #### Support
-- **Email :** info@omega24consulting.com
+- **Email :** infos@omega24consulting.com
 - **WhatsApp :** +229 01 41 31 22 22
 
 ---
@@ -984,4 +984,4 @@ Le site OMEGA24 CONSULTING est maintenant prêt pour la production ! 🚀
 
 **Document rédigé le :** 26 Novembre 2025  
 **Version :** 1.0  
-**Contact Support :** info@omega24consulting.com
+**Contact Support :** infos@omega24consulting.com

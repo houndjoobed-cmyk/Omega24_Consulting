@@ -109,8 +109,8 @@ export function Contact() {
                   </div>
                   <div className="text-[15px]">
                     <p className="text-sm text-gray-500 mb-1">Email</p>
-                    <a href="mailto:info@omega24consulting.com" className="text-[#002F6C] hover:text-[#4DA6FF] break-all">
-                      info@omega24consulting.com
+                    <a href="mailto:infos@omega24consulting.com" className="text-[#002F6C] hover:text-[#4DA6FF] break-all">
+                      infos@omega24consulting.com
                     </a>
                   </div>
                 </div>

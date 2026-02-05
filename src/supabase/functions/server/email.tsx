@@ -88,8 +88,8 @@ export async function sendContactEmail(data: EmailData): Promise<{ success: bool
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: 'OMEGA24 CONSULTING <onboarding@resend.dev>', // Resend's default sender for testing
-        to: ['info@omega24consulting.com'],
+        from: 'OMEGA24 CONSULTING <noreply@omega24consulting.com>',
+        to: ['infos@omega24consulting.com'],
         reply_to: data.email,
         subject: `🔔 Nouveau message : ${data.subject}`,
         html: emailBody
