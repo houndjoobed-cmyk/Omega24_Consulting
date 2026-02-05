@@ -20,7 +20,7 @@ export function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-
+    
     try {
       const response = await fetch(
         `https://${projectId}.supabase.co/functions/v1/make-server-27d76fd3/contact`,
@@ -38,7 +38,7 @@ export function Contact() {
         toast.success('Message envoyé !', {
           description: 'Nous vous répondrons dans les plus brefs délais.'
         });
-
+        
         // Reset form
         setFormData({
           name: '',
@@ -75,7 +75,7 @@ export function Contact() {
             Commencez Votre Aventure Aujourd'hui
           </h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Notre équipe de conseillers est prête à vous accompagner dans la
+            Notre équipe de conseillers est prête à vous accompagner dans la 
             réalisation de votre projet d'études à l'étranger.
           </p>
         </div>
@@ -85,7 +85,7 @@ export function Contact() {
           <div className="lg:col-span-1 space-y-6">
             <div className="bg-[#F4F4F4] p-6 rounded-lg">
               <h3 className="text-[#002F6C] mb-6">Informations de Contact</h3>
-
+              
               <div className="space-y-4">
                 <div className="flex gap-4">
                   <div className="w-12 h-12 bg-[#4DA6FF] rounded-lg flex items-center justify-center flex-shrink-0">
@@ -122,8 +122,8 @@ export function Contact() {
                   <div>
                     <p className="text-sm text-gray-500 mb-1">Horaires</p>
                     <p className="text-[#002F6C]">
-                      Lun - Ven: 8h00 - 18h30<br />
-                      Sam: 09h00 - 13h00
+                      Lun - Ven: 9h00 - 18h00<br />
+                      Sam: 10h00 - 16h00
                     </p>
                   </div>
                 </div>
@@ -133,11 +133,11 @@ export function Contact() {
             <div className="bg-gradient-to-br from-[#002F6C] to-[#4DA6FF] p-6 rounded-lg text-white">
               <h4 className="mb-2">Besoin de Conseils ?</h4>
               <p className="text-sm opacity-90 mb-4">
-                Prenez rendez-vous avec l'un de nos conseillers pour discuter
+                Prenez rendez-vous avec l'un de nos conseillers pour discuter 
                 de votre projet d'études à l'étranger.
               </p>
-              <Button
-                variant="secondary"
+              <Button 
+                variant="secondary" 
                 className="w-full bg-white text-[#002F6C] hover:bg-gray-100"
                 onClick={() => {
                   window.open('https://wa.me/2290141312222?text=Bonjour%20OMEGA%2024%20CONSULTING,%20je%20souhaite%20prendre%20rendez-vous%20pour%20discuter%20de%20mon%20projet.', '_blank');
@@ -217,7 +217,7 @@ export function Contact() {
                 />
               </div>
 
-              <Button
+              <Button 
                 type="submit"
                 className="w-full bg-[#4DA6FF] hover:bg-[#002F6C] text-white"
                 size="lg"
