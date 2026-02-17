@@ -4,6 +4,8 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { Label } from './ui/label';
+import { supabase } from '../utils/supabase/client';
+import { projectId } from '../utils/supabase/info';
 import type { Flyer } from '../App';
 
 interface FlyerEditorProps {
@@ -35,19 +37,17 @@ export function FlyerEditor({ flyer, onSave, onClose }: FlyerEditorProps) {
           let width = img.width;
           let height = img.height;
 
-          // Max dimensions
-          const MAX_WIDTH = 800;
-          const MAX_HEIGHT = 1000;
-
+          // Aggressive compression
+          const MAX_SIZE = 600;
           if (width > height) {
-            if (width > MAX_WIDTH) {
-              height *= MAX_WIDTH / width;
-              width = MAX_WIDTH;
+            if (width > MAX_SIZE) {
+              height *= MAX_SIZE / width;
+              width = MAX_SIZE;
             }
           } else {
-            if (height > MAX_HEIGHT) {
-              width *= MAX_HEIGHT / height;
-              height = MAX_HEIGHT;
+            if (height > MAX_SIZE) {
+              width *= MAX_SIZE / height;
+              height = MAX_SIZE;
             }
           }
 
@@ -57,7 +57,7 @@ export function FlyerEditor({ flyer, onSave, onClose }: FlyerEditorProps) {
           ctx?.drawImage(img, 0, 0, width, height);
 
           // Compress quality
-          resolve(canvas.toDataURL('image/jpeg', 0.7));
+          resolve(canvas.toDataURL('image/jpeg', 0.6));
         };
         img.src = e.target?.result as string;
       };
@@ -65,22 +65,50 @@ export function FlyerEditor({ flyer, onSave, onClose }: FlyerEditorProps) {
     });
   };
 
+  const [uploading, setUploading] = useState(false);
+
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files) {
+      setUploading(true);
       const newFiles = Array.from(files);
       for (const file of newFiles) {
         try {
-          const result = await compressImage(file);
-          setImagePreviews(prev => [...prev, result]);
+          // 1. Compress
+          const base64 = await compressImage(file);
+
+          // 2. Immediate preview (base64)
+          setImagePreviews(prev => [...prev, base64]);
+
+          // 3. Convert base64 to Blob for Storage upload
+          const response = await fetch(base64);
+          const blob = await response.blob();
+
+          // 4. Upload to Supabase Storage
+          const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.jpg`;
+          const { data, error } = await supabase.storage
+            .from('services')
+            .upload(fileName, blob, {
+              contentType: 'image/jpeg',
+              cacheControl: '3600'
+            });
+
+          if (error) throw error;
+
+          // 5. Get Public URL
+          const publicUrl = `https://${projectId}.supabase.co/storage/v1/object/public/services/${data.path}`;
+
+          // 6. Update form data with the URL
           setFormData(prev => ({
             ...prev,
-            images: [...prev.images, result]
+            images: [...prev.images, publicUrl]
           }));
         } catch (error) {
-          console.error('Compression error:', error);
+          console.error('Upload error:', error);
+          alert('Erreur lors de l\'envoi de l\'image');
         }
       }
+      setUploading(false);
     }
   };
 
@@ -94,8 +122,8 @@ export function FlyerEditor({ flyer, onSave, onClose }: FlyerEditorProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (formData.images.length < 2) {
-      alert('Veuillez ajouter au moins 2 images pour cette affiche.');
+    if (formData.images.length < 1) {
+      alert('Veuillez ajouter au moins 1 image pour cette affiche.');
       return;
     }
     onSave(formData);
@@ -118,7 +146,7 @@ export function FlyerEditor({ flyer, onSave, onClose }: FlyerEditorProps) {
         <form onSubmit={handleSubmit} className="p-6 space-y-6">
           {/* Image Upload */}
           <div>
-            <Label htmlFor="image">Images de l'affiche (Min. 2) *</Label>
+            <Label htmlFor="image">Images de l'affiche (Min. 1) *</Label>
             <div className="mt-2 space-y-4">
               {/* Previews Grid */}
               {imagePreviews.length > 0 && (
@@ -140,13 +168,14 @@ export function FlyerEditor({ flyer, onSave, onClose }: FlyerEditorProps) {
                     </div>
                   ))}
                   {/* Small add button in the grid */}
-                  <label className="flex flex-col items-center justify-center aspect-square border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                  <label className={`flex flex-col items-center justify-center aspect-square border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors ${uploading ? 'opacity-50 pointer-events-none' : ''}`}>
                     <Plus className="w-6 h-6 text-gray-400" />
                     <input
                       type="file"
                       className="hidden"
                       accept="image/*"
                       multiple
+                      disabled={uploading}
                       onChange={handleImageUpload}
                     />
                   </label>
@@ -155,22 +184,25 @@ export function FlyerEditor({ flyer, onSave, onClose }: FlyerEditorProps) {
 
               {/* Empty State Upload Area */}
               {imagePreviews.length === 0 && (
-                <label className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                <label className={`flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors ${uploading ? 'opacity-50 pointer-events-none' : ''}`}>
                   <Upload className="w-10 h-10 text-gray-400 mb-2" />
-                  <span className="text-sm text-gray-500 font-medium">Cliquez pour ajouter des images (min. 2)</span>
+                  <span className="text-sm text-gray-500 font-medium">
+                    {uploading ? 'Envoi en cours...' : 'Cliquez pour ajouter des images (min. 1)'}
+                  </span>
                   <input
                     type="file"
                     className="hidden"
                     accept="image/*"
                     multiple
+                    disabled={uploading}
                     onChange={handleImageUpload}
                   />
                 </label>
               )}
 
               <div className="flex justify-between items-center text-xs">
-                <span className={formData.images.length < 2 ? "text-red-500 font-medium" : "text-green-600 font-medium"}>
-                  {formData.images.length} image(s) ajoutée(s) (Minimum: 2)
+                <span className={formData.images.length < 1 ? "text-red-500 font-medium" : "text-green-600 font-medium"}>
+                  {formData.images.length} image(s) ajoutée(s) (Minimum: 1)
                 </span>
               </div>
             </div>
@@ -234,7 +266,7 @@ export function FlyerEditor({ flyer, onSave, onClose }: FlyerEditorProps) {
             <Button
               type="submit"
               className="flex-1 bg-[#4DA6FF] hover:bg-[#002F6C] text-white transition-colors"
-              disabled={!formData.title || !formData.description || formData.images.length < 2}
+              disabled={!formData.title || !formData.description || formData.images.length < 1 || uploading}
             >
               {flyer ? 'Mettre à jour' : 'Créer'}
             </Button>

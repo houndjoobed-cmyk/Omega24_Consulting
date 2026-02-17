@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { Edit, Trash2, Eye } from 'lucide-react';
 import { Button } from './ui/button';
+import { Skeleton } from './ui/skeleton';
 import type { Flyer } from '../App';
 
 interface FlyerCardProps {
@@ -10,14 +12,22 @@ interface FlyerCardProps {
 }
 
 export function FlyerCard({ flyer, onEdit, onDelete, onView }: FlyerCardProps) {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const imageUrl = flyer.images?.[0] || (flyer as any).image || 'https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?w=800&auto=format&fit=crop&q=60';
+
   return (
     <div className="group relative bg-card text-card-foreground rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
       {/* Flyer Image */}
-      <div className="relative h-[400px] overflow-hidden">
+      <div className="relative h-[400px] overflow-hidden bg-muted">
+        {!isLoaded && (
+          <Skeleton className="absolute inset-0 w-full h-full" />
+        )}
         <img
-          src={flyer.images?.[0] || (flyer as any).image || 'https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?w=800&auto=format&fit=crop&q=60'}
+          src={imageUrl}
           alt={flyer.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          loading="lazy"
+          onLoad={() => setIsLoaded(true)}
+          className={`w-full h-full object-cover group-hover:scale-105 transition-all duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
         />
 
         {/* Overlay on hover */}

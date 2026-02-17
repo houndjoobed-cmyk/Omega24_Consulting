@@ -8,6 +8,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { projectId, publicAnonKey } from '../utils/supabase/info';
 import { Container } from './ui/Container';
 import { FadeIn, StaggerContainer } from './ui/motion';
+import { toast } from 'sonner';
 import type { Flyer } from '../App';
 
 interface ServicesProps {
@@ -77,13 +78,16 @@ export function Services({ flyers, onUpdateFlyers }: ServicesProps) {
 
       if (response.ok) {
         onUpdateFlyers(flyers.filter(f => f.id !== flyerId));
+        toast.success('Affiche supprimée !');
       } else {
         const error = await response.json();
-        alert('Erreur: ' + (error.error || 'Impossible de supprimer'));
+        toast.error('Erreur', {
+          description: error.error || 'Impossible de supprimer'
+        });
       }
     } catch (error) {
       console.error('Error deleting flyer:', error);
-      alert('Erreur lors de la suppression');
+      toast.error('Erreur lors de la suppression');
     } finally {
       setLoading(false);
     }
@@ -115,18 +119,22 @@ export function Services({ flyers, onUpdateFlyers }: ServicesProps) {
       if (response.ok) {
         if (editingFlyer) {
           onUpdateFlyers(flyers.map(f => f.id === flyer.id ? flyerToSave : f));
+          toast.success('Affiche mise à jour !');
         } else {
           onUpdateFlyers([...flyers, flyerToSave]);
+          toast.success('Nouvelle affiche créée !');
         }
         setIsEditorOpen(false);
         setEditingFlyer(null);
       } else {
         const error = await response.json();
-        alert('Erreur: ' + (error.error || 'Impossible de sauvegarder'));
+        toast.error('Erreur', {
+          description: error.error || 'Impossible de sauvegarder'
+        });
       }
     } catch (error) {
       console.error('Error saving flyer:', error);
-      alert('Erreur lors de la sauvegarde');
+      toast.error('Erreur lors de la sauvegarde');
     } finally {
       setLoading(false);
     }

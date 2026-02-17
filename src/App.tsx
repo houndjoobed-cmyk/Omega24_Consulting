@@ -8,6 +8,7 @@ const Testimonials = lazy(() => import('./components/Testimonials').then(module 
 const About = lazy(() => import('./components/About').then(module => ({ default: module.About })));
 const Contact = lazy(() => import('./components/Contact').then(module => ({ default: module.Contact })));
 const Footer = lazy(() => import('./components/Footer').then(module => ({ default: module.Footer })));
+import { Toaster } from 'sonner';
 
 export interface Flyer {
   id: string;
@@ -61,6 +62,7 @@ export default function App() {
 
   return (
     <AuthProvider>
+      <Toaster position="top-right" expand={true} richColors />
       <div className="min-h-screen bg-white">
         {/* Header et Hero sont chargés immédiatement (critiques) */}
         <Header />
