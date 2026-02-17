@@ -27,6 +27,7 @@ export function FlyerCard({ flyer, onEdit, onDelete, onView }: FlyerCardProps) {
           alt={flyer.title}
           loading="lazy"
           onLoad={() => setIsLoaded(true)}
+          onError={() => setIsLoaded(true)}
           className={`w-full h-full object-cover group-hover:scale-105 transition-all duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
         />
 

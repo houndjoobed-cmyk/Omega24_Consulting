@@ -5,11 +5,13 @@ import { FlyerCard } from './FlyerCard';
 import { FlyerEditor } from './FlyerEditor';
 import { FlyerViewer } from './FlyerViewer';
 import { useAuth } from '../contexts/AuthContext';
-import { projectId, publicAnonKey } from '../utils/supabase/info';
+import { supabase } from '../utils/supabase/client';
+import { projectId } from '../utils/supabase/info'; // Keep for other uses if needed, or remove if unused
 import { Container } from './ui/Container';
 import { FadeIn, StaggerContainer } from './ui/motion';
 import { toast } from 'sonner';
 import type { Flyer } from '../App';
+import { Skeleton } from './ui/skeleton';
 
 interface ServicesProps {
   flyers: Flyer[];
@@ -20,7 +22,8 @@ export function Services({ flyers, onUpdateFlyers }: ServicesProps) {
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [editingFlyer, setEditingFlyer] = useState<Flyer | null>(null);
   const [viewingFlyer, setViewingFlyer] = useState<Flyer | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false); // For actions (delete/save)
+  const [isFetching, setIsFetching] = useState(true); // For initial load
   const { isAuthenticated, accessToken } = useAuth();
 
   useEffect(() => {
@@ -28,24 +31,29 @@ export function Services({ flyers, onUpdateFlyers }: ServicesProps) {
   }, []);
 
   const loadFlyers = async () => {
+    setIsFetching(true);
     try {
-      const response = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/make-server-27d76fd3/flyers`,
-        {
-          headers: {
-            'Authorization': `Bearer ${publicAnonKey}`,
-          },
-        }
-      );
+      // Direct Supabase fetch for better performance
+      const { data, error } = await supabase
+        .from('kv_store_27d76fd3')
+        .select('value')
+        .like('key', 'flyer:%');
 
-      if (response.ok) {
-        const data = await response.json();
-        if (data.flyers && data.flyers.length > 0) {
-          onUpdateFlyers(data.flyers);
-        }
+      if (error) {
+        throw error;
+      }
+
+      if (data) {
+        const flyersData = data.map(item => item.value);
+        // Sort by id (timestamp) descending to show newest first
+        flyersData.sort((a: Flyer, b: Flyer) => Number(b.id) - Number(a.id));
+        onUpdateFlyers(flyersData);
       }
     } catch (error) {
       console.error('Error loading flyers:', error);
+      toast.error('Impossible de charger les services');
+    } finally {
+      setIsFetching(false);
     }
   };
 
@@ -121,7 +129,7 @@ export function Services({ flyers, onUpdateFlyers }: ServicesProps) {
           onUpdateFlyers(flyers.map(f => f.id === flyer.id ? flyerToSave : f));
           toast.success('Affiche mise à jour !');
         } else {
-          onUpdateFlyers([...flyers, flyerToSave]);
+          onUpdateFlyers([flyerToSave, ...flyers]); // Add new to top
           toast.success('Nouvelle affiche créée !');
         }
         setIsEditorOpen(false);
@@ -172,22 +180,38 @@ export function Services({ flyers, onUpdateFlyers }: ServicesProps) {
           </div>
         )}
 
-        {/* Flyers Grid */}
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" staggerDelay={100}>
-          {flyers.map((flyer) => (
-            <FadeIn key={flyer.id} className="h-full">
-              <FlyerCard
-                flyer={flyer}
-                onEdit={isAuthenticated ? handleEditFlyer : undefined}
-                onDelete={isAuthenticated ? handleDeleteFlyer : undefined}
-                onView={handleViewFlyer}
-              />
-            </FadeIn>
-          ))}
-        </StaggerContainer>
+        {/* Loading State w/ Skeletons */}
+        {isFetching ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[...Array(3)].map((_, i) => (
+              <div key={i} className="h-full bg-card rounded-xl overflow-hidden border border-border/50 shadow-sm">
+                <Skeleton className="w-full aspect-[4/5]" />
+                <div className="p-6 space-y-3">
+                  <Skeleton className="h-6 w-3/4" />
+                  <Skeleton className="h-4 w-full" />
+                  <Skeleton className="h-4 w-2/3" />
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          /* Flyers Grid */
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" staggerDelay={100}>
+            {flyers.map((flyer) => (
+              <FadeIn key={flyer.id} className="h-full">
+                <FlyerCard
+                  flyer={flyer}
+                  onEdit={isAuthenticated ? handleEditFlyer : undefined}
+                  onDelete={isAuthenticated ? handleDeleteFlyer : undefined}
+                  onView={handleViewFlyer}
+                />
+              </FadeIn>
+            ))}
+          </StaggerContainer>
+        )}
 
-        {/* Empty State */}
-        {flyers.length === 0 && (
+        {/* Empty State - Only show when NOT fetching */}
+        {!isFetching && flyers.length === 0 && (
           <div className="text-center py-24 bg-card rounded-xl border border-dashed border-muted-foreground/20">
             <div className="text-muted-foreground/30 mb-6">
               <svg className="w-24 h-24 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">

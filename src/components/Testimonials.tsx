@@ -6,10 +6,10 @@ import { Textarea } from './ui/textarea';
 import { Label } from './ui/label';
 import { useAuth } from '../contexts/AuthContext';
 import { toast } from 'sonner';
-import { projectId, publicAnonKey } from '../utils/supabase/info';
+import { supabase } from '../utils/supabase/client';
+import { projectId } from '../utils/supabase/info';
 import { Container } from './ui/Container';
 import { Card, CardContent } from './ui/card';
-import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'; // Assuming this exists or using img fallback
 
 export interface Testimonial {
   id: string;
@@ -44,21 +44,26 @@ export function Testimonials() {
 
   const loadTestimonials = async () => {
     try {
-      const response = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/make-server-27d76fd3/testimonials`,
-        {
-          headers: {
-            'Authorization': `Bearer ${publicAnonKey}`
-          }
-        }
-      );
+      const { data, error } = await supabase
+        .from('kv_store_27d76fd3')
+        .select('value')
+        .like('key', 'testimonial:%');
 
-      if (response.ok) {
-        const data = await response.json();
-        setTestimonials(data.testimonials || []);
+      if (error) {
+        throw error;
+      }
+
+      if (data) {
+        const testimonialsData = data.map(item => item.value);
+        // Sort by date descending (newest first)
+        testimonialsData.sort((a: Testimonial, b: Testimonial) =>
+          new Date(b.date).getTime() - new Date(a.date).getTime()
+        );
+        setTestimonials(testimonialsData);
       }
     } catch (error) {
       console.error('Error loading testimonials:', error);
+      toast.error('Impossible de charger les témoignages');
     } finally {
       setLoading(false);
     }
@@ -224,8 +229,8 @@ export function Testimonials() {
                       <Star
                         key={i}
                         className={`w-4 h-4 ${i < testimonial.rating
-                            ? 'fill-yellow-400 text-yellow-400'
-                            : 'text-gray-300'
+                          ? 'fill-yellow-400 text-yellow-400'
+                          : 'text-gray-300'
                           }`}
                       />
                     ))}

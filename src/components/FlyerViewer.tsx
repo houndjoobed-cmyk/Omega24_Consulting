@@ -8,12 +8,16 @@ interface FlyerViewerProps {
 }
 
 export function FlyerViewer({ flyer, onClose }: FlyerViewerProps) {
-  // Normalize images to always have an array, supporting legacy format
-  const displayImages = flyer.images?.length > 0
-    ? flyer.images
-    : [(flyer as any).image].filter(Boolean) as string[];
-
+  const [isLoaded, setIsLoaded] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Normalize images to always have an array, supporting legacy format
+  const displayImages = (flyer.images?.length > 0
+    ? flyer.images
+    : [(flyer as any).image].filter(Boolean) as string[]
+  ).filter(url => typeof url === 'string' && url.length > 0);
+
+  const fallbackImage = 'https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?w=1200&auto=format&fit=crop&q=60';
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % displayImages.length);
@@ -44,10 +48,21 @@ export function FlyerViewer({ flyer, onClose }: FlyerViewerProps) {
             {/* Main Image View */}
             <div className="relative aspect-[4/5] bg-slate-100 flex items-center justify-center overflow-hidden rounded-lg shadow-md">
               <img
-                src={displayImages[currentImageIndex] || 'https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?w=800&auto=format&fit=crop&q=60'}
+                src={displayImages[currentImageIndex] || fallbackImage}
                 alt={`${flyer.title} - Image ${currentImageIndex + 1}`}
-                className="max-w-full max-h-[60vh] object-contain transition-all duration-300"
+                onLoad={() => setIsLoaded(true)}
+                onError={() => {
+                  console.error("FlyerViewer: Failed to load image", displayImages[currentImageIndex]);
+                  setIsLoaded(true); // Stop spinner
+                }}
+                className={`max-w-full max-h-[60vh] object-contain transition-all duration-500 ${isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
               />
+
+              {!isLoaded && (
+                <div className="absolute inset-0 bg-gray-100 animate-pulse flex items-center justify-center">
+                  <div className="w-10 h-10 border-4 border-[#4DA6FF] border-t-transparent rounded-full animate-spin"></div>
+                </div>
+              )}
 
               {/* Navigation Arrows */}
               {displayImages.length > 1 && (

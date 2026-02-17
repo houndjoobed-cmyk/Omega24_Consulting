@@ -5,7 +5,6 @@ import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { Label } from './ui/label';
 import { supabase } from '../utils/supabase/client';
-import { projectId } from '../utils/supabase/info';
 import type { Flyer } from '../App';
 
 interface FlyerEditorProps {
@@ -95,8 +94,12 @@ export function FlyerEditor({ flyer, onSave, onClose }: FlyerEditorProps) {
 
           if (error) throw error;
 
-          // 5. Get Public URL
-          const publicUrl = `https://${projectId}.supabase.co/storage/v1/object/public/services/${data.path}`;
+          // 5. Get Public URL (Safe method)
+          const { data: urlData } = supabase.storage
+            .from('services')
+            .getPublicUrl(data.path);
+
+          const publicUrl = urlData.publicUrl;
 
           // 6. Update form data with the URL
           setFormData(prev => ({
@@ -202,7 +205,7 @@ export function FlyerEditor({ flyer, onSave, onClose }: FlyerEditorProps) {
 
               <div className="flex justify-between items-center text-xs">
                 <span className={formData.images.length < 1 ? "text-red-500 font-medium" : "text-green-600 font-medium"}>
-                  {formData.images.length} image(s) ajoutée(s) (Minimum: 1)
+                  {formData.images.length} image(s) ajoutée(s) (Recommandé : 1 à 10)
                 </span>
               </div>
             </div>

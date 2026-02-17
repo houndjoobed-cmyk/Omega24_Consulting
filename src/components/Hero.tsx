@@ -1,4 +1,5 @@
 import { useCallback, memo } from 'react';
+import { toast } from 'sonner';
 import { GraduationCap, Globe, Award, Users } from 'lucide-react';
 import logoImage from '@/assets/logo-omega.png';
 import { Button } from './ui/button';
@@ -72,6 +73,7 @@ export const Hero = memo(function Hero() {
                   Nous Contacter
                 </Button>
               </FadeIn>
+
             </div>
 
             <div className="lg:col-span-5 flex justify-center lg:justify-end">
