@@ -1,4 +1,4 @@
-import { Hono } from 'npm:hono';
+import { Hono, type Context } from 'npm:hono';
 import { cors } from 'npm:hono/cors';
 import { logger } from 'npm:hono/logger';
 import { createClient } from 'jsr:@supabase/supabase-js@2';
@@ -16,18 +16,19 @@ app.use('*', cors({
 app.use('*', logger(console.log));
 
 // Initialize Supabase client
+// @ts-ignore: Deno is available in Supabase Edge Functions
 const supabase = createClient(
   Deno.env.get('SUPABASE_URL') ?? '',
   Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
 );
 
 // Health check
-app.get('/make-server-27d76fd3/health', (c) => {
+app.get('/make-server-27d76fd3/health', (c: Context) => {
   return c.json({ status: 'ok', message: 'Server is running' });
 });
 
 // Signup route - Create new admin user
-app.post('/make-server-27d76fd3/signup', async (c) => {
+app.post('/make-server-27d76fd3/signup', async (c: Context) => {
   try {
     const body = await c.req.json();
     const { email, password, name } = body;
@@ -37,6 +38,7 @@ app.post('/make-server-27d76fd3/signup', async (c) => {
     }
 
     // Create user with Supabase Auth
+    // @ts-ignore: Admin functions are available on the service role client
     const { data, error } = await supabase.auth.admin.createUser({
       email,
       password,
@@ -49,9 +51,9 @@ app.post('/make-server-27d76fd3/signup', async (c) => {
       return c.json({ error: error.message }, 400);
     }
 
-    return c.json({ 
-      success: true, 
-      user: { id: data.user.id, email: data.user.email } 
+    return c.json({
+      success: true,
+      user: { id: data.user.id, email: data.user.email }
     });
   } catch (error: any) {
     console.log('Signup error:', error.message);
@@ -60,7 +62,7 @@ app.post('/make-server-27d76fd3/signup', async (c) => {
 });
 
 // Get all flyers
-app.get('/make-server-27d76fd3/flyers', async (c) => {
+app.get('/make-server-27d76fd3/flyers', async (c: Context) => {
   try {
     const flyers = await kv.getByPrefix('flyer:');
     return c.json({ flyers: flyers || [] });
@@ -71,9 +73,10 @@ app.get('/make-server-27d76fd3/flyers', async (c) => {
 });
 
 // Add/Update flyer (protected route)
-app.post('/make-server-27d76fd3/flyers', async (c) => {
+app.post('/make-server-27d76fd3/flyers', async (c: Context) => {
   try {
     // Verify user is authenticated
+    // @ts-ignore: Deno is available
     const accessToken = c.req.header('Authorization')?.split(' ')[1];
     if (!accessToken || accessToken === Deno.env.get('SUPABASE_ANON_KEY')) {
       return c.json({ error: 'Authentification requise' }, 401);
@@ -85,13 +88,18 @@ app.post('/make-server-27d76fd3/flyers', async (c) => {
     }
 
     const body = await c.req.json();
-    const { id, title, description, image, details } = body;
+    const { id, title, description, images, image, details } = body;
 
     if (!id || !title || !description) {
       return c.json({ error: 'Données invalides' }, 400);
     }
 
-    const flyer = { id, title, description, image, details };
+    // Support legacy "image" property or new "images" array
+    const finalImages = Array.isArray(images) && images.length > 0
+      ? images
+      : (image ? [image] : []);
+
+    const flyer = { id, title, description, images: finalImages, details };
     await kv.set(`flyer:${id}`, flyer);
 
     return c.json({ success: true, flyer });
@@ -102,9 +110,10 @@ app.post('/make-server-27d76fd3/flyers', async (c) => {
 });
 
 // Delete flyer (protected route)
-app.delete('/make-server-27d76fd3/flyers/:id', async (c) => {
+app.delete('/make-server-27d76fd3/flyers/:id', async (c: Context) => {
   try {
     // Verify user is authenticated
+    // @ts-ignore: Deno is available
     const accessToken = c.req.header('Authorization')?.split(' ')[1];
     if (!accessToken || accessToken === Deno.env.get('SUPABASE_ANON_KEY')) {
       return c.json({ error: 'Authentification requise' }, 401);
@@ -126,8 +135,9 @@ app.delete('/make-server-27d76fd3/flyers/:id', async (c) => {
 });
 
 // Verify admin session
-app.get('/make-server-27d76fd3/verify-admin', async (c) => {
+app.get('/make-server-27d76fd3/verify-admin', async (c: Context) => {
   try {
+    // @ts-ignore: Deno is available
     const accessToken = c.req.header('Authorization')?.split(' ')[1];
     if (!accessToken || accessToken === Deno.env.get('SUPABASE_ANON_KEY')) {
       return c.json({ authenticated: false }, 401);
@@ -138,13 +148,13 @@ app.get('/make-server-27d76fd3/verify-admin', async (c) => {
       return c.json({ authenticated: false }, 401);
     }
 
-    return c.json({ 
-      authenticated: true, 
-      user: { 
-        id: user.id, 
+    return c.json({
+      authenticated: true,
+      user: {
+        id: user.id,
         email: user.email,
-        name: user.user_metadata?.name 
-      } 
+        name: user.user_metadata?.name
+      }
     });
   } catch (error: any) {
     console.log('Verify admin error:', error.message);
@@ -153,7 +163,7 @@ app.get('/make-server-27d76fd3/verify-admin', async (c) => {
 });
 
 // Get all testimonials
-app.get('/make-server-27d76fd3/testimonials', async (c) => {
+app.get('/make-server-27d76fd3/testimonials', async (c: Context) => {
   try {
     const testimonials = await kv.getByPrefix('testimonial:');
     return c.json({ testimonials: testimonials || [] });
@@ -164,9 +174,10 @@ app.get('/make-server-27d76fd3/testimonials', async (c) => {
 });
 
 // Add testimonial (protected route)
-app.post('/make-server-27d76fd3/testimonials', async (c) => {
+app.post('/make-server-27d76fd3/testimonials', async (c: Context) => {
   try {
     // Verify user is authenticated
+    // @ts-ignore: Deno is available
     const accessToken = c.req.header('Authorization')?.split(' ')[1];
     if (!accessToken || accessToken === Deno.env.get('SUPABASE_ANON_KEY')) {
       return c.json({ error: 'Authentification requise' }, 401);
@@ -195,9 +206,10 @@ app.post('/make-server-27d76fd3/testimonials', async (c) => {
 });
 
 // Update testimonial (protected route)
-app.put('/make-server-27d76fd3/testimonials', async (c) => {
+app.put('/make-server-27d76fd3/testimonials', async (c: Context) => {
   try {
     // Verify user is authenticated
+    // @ts-ignore: Deno is available
     const accessToken = c.req.header('Authorization')?.split(' ')[1];
     if (!accessToken || accessToken === Deno.env.get('SUPABASE_ANON_KEY')) {
       return c.json({ error: 'Authentification requise' }, 401);
@@ -226,9 +238,10 @@ app.put('/make-server-27d76fd3/testimonials', async (c) => {
 });
 
 // Delete testimonial (protected route)
-app.delete('/make-server-27d76fd3/testimonials/:id', async (c) => {
+app.delete('/make-server-27d76fd3/testimonials/:id', async (c: Context) => {
   try {
     // Verify user is authenticated
+    // @ts-ignore: Deno is available
     const accessToken = c.req.header('Authorization')?.split(' ')[1];
     if (!accessToken || accessToken === Deno.env.get('SUPABASE_ANON_KEY')) {
       return c.json({ error: 'Authentification requise' }, 401);
@@ -250,7 +263,7 @@ app.delete('/make-server-27d76fd3/testimonials/:id', async (c) => {
 });
 
 // Send contact email
-app.post('/make-server-27d76fd3/contact', async (c) => {
+app.post('/make-server-27d76fd3/contact', async (c: Context) => {
   try {
     const body = await c.req.json();
     const { name, email, phone, subject, message } = body;
@@ -287,4 +300,5 @@ app.post('/make-server-27d76fd3/contact', async (c) => {
   }
 });
 
+// @ts-ignore: Deno is available
 Deno.serve(app.fetch);

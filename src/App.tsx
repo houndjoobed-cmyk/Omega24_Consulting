@@ -2,11 +2,6 @@ import { useState, lazy, Suspense, useEffect } from 'react';
 import { AuthProvider } from './contexts/AuthContext';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
-import assuranceFlyer from './assets/68477f6f95a84425423fe12251a74d2fd17f1ce2.png';
-import billetterieFlyer from './assets/c57cb368d0fcbe717e89feafe155bc280d522dc2.png';
-import locationFlyer from './assets/1ea55cc09f74c36daa5ac5718db259bf90a61dae.png';
-
-// Lazy loading des composants moins critiques pour un chargement initial plus rapide
 const WhatWeOffer = lazy(() => import('./components/WhatWeOffer').then(module => ({ default: module.WhatWeOffer })));
 const Services = lazy(() => import('./components/Services').then(module => ({ default: module.Services })));
 const Testimonials = lazy(() => import('./components/Testimonials').then(module => ({ default: module.Testimonials })));
@@ -18,7 +13,7 @@ export interface Flyer {
   id: string;
   title: string;
   description: string;
-  image: string;
+  images: string[];
   details?: string[];
 }
 

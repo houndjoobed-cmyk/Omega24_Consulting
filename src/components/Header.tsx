@@ -1,72 +1,130 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Menu, X } from 'lucide-react';
-import logoImage from 'figma:asset/a3e94e1254122a1ce127e1521b608a1d24b5d21a.png';
+import { Container } from './ui/Container';
+import { Button } from './ui/button';
+import { cn } from '@/components/ui/utils';
+import PillNav from './ui/pill-nav';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('accueil');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+
+      // Simple active section detecting
+      const sections = ['accueil', 'cequenoousproposons', 'services', 'temoignages', 'apropos', 'contact'];
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 100 && rect.bottom >= 100) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinks = [
-    { href: '#accueil', label: 'Accueil' },
-    { href: '#cequenoousproposons', label: 'Ce Que Nous Proposons' },
-    { href: '#services', label: 'Nos Services' },
-    { href: '#temoignages', label: 'Témoignages' },
-    { href: '#apropos', label: 'À Propos' },
-    { href: '#contact', label: 'Contact' },
+    { id: 'accueil', href: '#accueil', label: 'Accueil' },
+    { id: 'cequenoousproposons', href: '#cequenoousproposons', label: 'Offres' },
+    { id: 'services', href: '#services', label: 'Services' },
+    { id: 'temoignages', href: '#temoignages', label: 'Témoignages' },
+    { id: 'apropos', href: '#apropos', label: 'À Propos' },
+    { id: 'contact', href: '#contact', label: 'Contact' },
   ];
 
+  const handleNavItemClick = useCallback((id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setActiveSection(id);
+    }
+  }, []);
+
   return (
-    <header className="bg-white shadow-md sticky top-0 z-40">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center">
-          {/* Logo */}
-          <div className="flex items-center">
-            <img
-              src={logoImage}
-              alt="OMEGA24 CONSULTING"
-              className="h-30 w-auto animate-float"
+    <header
+      className="fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300"
+    >
+      <div className={cn(
+        "absolute inset-0 transition-all duration-500 bg-background/95 backdrop-blur-md border-b",
+        isScrolled ? "shadow-sm border-border" : "border-transparent"
+      )} />
+
+      <Container className="relative">
+        <div className="flex justify-center items-center min-h-[64px] relative">
+          {/* Desktop Navigation with Pill Effect */}
+          <div className="hidden md:block">
+            <PillNav
+              items={navLinks}
+              activeId={activeSection}
+              onItemClick={handleNavItemClick}
+              className="bg-transparent border-none shadow-none"
             />
           </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8 items-center">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-[#002F6C] hover:text-[#4DA6FF] transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
+          {/* Desktop CTA Button */}
+          <div className="hidden lg:block absolute right-0">
+            <Button
+              size="sm"
+              className="bg-secondary hover:bg-secondary/90 text-white shadow-md hover:shadow-lg transition-all"
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              Demander un Devis
+            </Button>
+          </div>
 
           {/* Mobile menu button */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden text-[#002F6C]"
-          >
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          <div className="md:hidden absolute right-0">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="p-2 text-foreground hover:bg-slate-100 rounded-md transition-colors"
+            >
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-gray-200">
-            <div className="flex flex-col space-y-4">
+          <div className="md:hidden absolute top-full left-0 right-0 bg-background border-b shadow-lg animate-in slide-in-from-top-2">
+            <nav className="flex flex-col p-4 space-y-4">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-[#002F6C] hover:text-[#4DA6FF] transition-colors py-2"
-                  onClick={() => setIsMenuOpen(false)}
+                  className={cn(
+                    "px-4 py-2 text-foreground hover:bg-slate-50 hover:text-primary rounded-md transition-colors font-medium",
+                    activeSection === link.id && "bg-slate-50 text-primary"
+                  )}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsMenuOpen(false);
+                    handleNavItemClick(link.id);
+                  }}
                 >
                   {link.label}
                 </a>
               ))}
-            </div>
-          </nav>
+              <Button
+                className="w-full bg-secondary hover:bg-secondary/90 text-white mt-4"
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Demander un Devis
+              </Button>
+            </nav>
+          </div>
         )}
-      </div>
+      </Container>
     </header>
   );
 }

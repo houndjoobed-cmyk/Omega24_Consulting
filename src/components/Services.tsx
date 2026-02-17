@@ -6,6 +6,8 @@ import { FlyerEditor } from './FlyerEditor';
 import { FlyerViewer } from './FlyerViewer';
 import { useAuth } from '../contexts/AuthContext';
 import { projectId, publicAnonKey } from '../utils/supabase/info';
+import { Container } from './ui/Container';
+import { FadeIn, StaggerContainer } from './ui/motion';
 import type { Flyer } from '../App';
 
 interface ServicesProps {
@@ -20,7 +22,6 @@ export function Services({ flyers, onUpdateFlyers }: ServicesProps) {
   const [loading, setLoading] = useState(false);
   const { isAuthenticated, accessToken } = useAuth();
 
-  // Load flyers from backend on mount
   useEffect(() => {
     loadFlyers();
   }, []);
@@ -95,8 +96,8 @@ export function Services({ flyers, onUpdateFlyers }: ServicesProps) {
   const handleSaveFlyer = async (flyer: Flyer) => {
     setLoading(true);
     try {
-      const flyerToSave = editingFlyer 
-        ? flyer 
+      const flyerToSave = editingFlyer
+        ? flyer
         : { ...flyer, id: Date.now().toString() };
 
       const response = await fetch(
@@ -132,28 +133,30 @@ export function Services({ flyers, onUpdateFlyers }: ServicesProps) {
   };
 
   return (
-    <section id="services" className="py-20 bg-[#F4F4F4]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="services" className="py-24 bg-muted/40">
+      <Container>
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <div className="inline-block bg-[#4DA6FF]/10 px-4 py-2 rounded-full mb-4">
-            <span className="text-[#4DA6FF]">Nos Services</span>
-          </div>
-          <h2 className="text-[#002F6C] mb-4">
-            Découvrez Nos Offres
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-            Consultez nos différents services et offres disponibles pour vous accompagner.
-          </p>
+        <div className="text-center mb-16">
+          <FadeIn>
+            <div className="inline-block bg-primary/10 px-4 py-2 rounded-full mb-4">
+              <span className="text-primary font-semibold text-sm uppercase tracking-wider">Nos Services</span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-6">
+              Découvrez Nos Offres
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+              Consultez nos différents services et offres disponibles pour vous accompagner.
+            </p>
+          </FadeIn>
         </div>
 
-        {/* Admin Button - Only visible when authenticated */}
+        {/* Admin Button */}
         {isAuthenticated && (
           <div className="mb-8 flex justify-end">
             <Button
               onClick={handleAddFlyer}
               disabled={loading}
-              className="bg-[#002F6C] hover:bg-[#4DA6FF] text-white"
+              className="bg-primary hover:bg-primary/90"
             >
               <Plus className="w-4 h-4 mr-2" />
               Ajouter une affiche
@@ -162,31 +165,33 @@ export function Services({ flyers, onUpdateFlyers }: ServicesProps) {
         )}
 
         {/* Flyers Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" staggerDelay={100}>
           {flyers.map((flyer) => (
-            <FlyerCard
-              key={flyer.id}
-              flyer={flyer}
-              onEdit={isAuthenticated ? handleEditFlyer : undefined}
-              onDelete={isAuthenticated ? handleDeleteFlyer : undefined}
-              onView={handleViewFlyer}
-            />
+            <FadeIn key={flyer.id} className="h-full">
+              <FlyerCard
+                flyer={flyer}
+                onEdit={isAuthenticated ? handleEditFlyer : undefined}
+                onDelete={isAuthenticated ? handleDeleteFlyer : undefined}
+                onView={handleViewFlyer}
+              />
+            </FadeIn>
           ))}
-        </div>
+        </StaggerContainer>
 
         {/* Empty State */}
         {flyers.length === 0 && (
-          <div className="text-center py-16">
-            <div className="text-gray-400 mb-4">
+          <div className="text-center py-24 bg-card rounded-xl border border-dashed border-muted-foreground/20">
+            <div className="text-muted-foreground/30 mb-6">
               <svg className="w-24 h-24 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
             </div>
-            <p className="text-gray-500 mb-4">Aucune affiche disponible pour le moment</p>
+            <p className="text-muted-foreground text-lg mb-6">Aucune affiche disponible pour le moment</p>
             {isAuthenticated && (
               <Button
                 onClick={handleAddFlyer}
-                className="bg-[#4DA6FF] hover:bg-[#002F6C] text-white"
+                size="lg"
+                className="bg-primary hover:bg-primary/90"
               >
                 <Plus className="w-4 h-4 mr-2" />
                 Créer votre première affiche
@@ -194,9 +199,9 @@ export function Services({ flyers, onUpdateFlyers }: ServicesProps) {
             )}
           </div>
         )}
-      </div>
+      </Container>
 
-      {/* Flyer Editor Modal */}
+      {/* Modals */}
       {isEditorOpen && (
         <FlyerEditor
           flyer={editingFlyer}
@@ -208,7 +213,6 @@ export function Services({ flyers, onUpdateFlyers }: ServicesProps) {
         />
       )}
 
-      {/* Flyer Viewer Modal */}
       {viewingFlyer && (
         <FlyerViewer
           flyer={viewingFlyer}

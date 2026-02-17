@@ -1,25 +1,24 @@
-import image_a3e94e1254122a1ce127e1521b608a1d24b5d21a from 'figma:asset/a3e94e1254122a1ce127e1521b608a1d24b5d21a.png';
-import { Facebook, Linkedin, Mail, Phone, Lock, User, LogOut } from 'lucide-react';
-import { useState, useMemo, useCallback, memo } from 'react';
+import logoImage from '@/assets/logo-omega.png';
+import { Facebook, Linkedin, Instagram, Mail, Phone, Lock, LogOut, CheckCheck } from 'lucide-react';
+import { useState, useCallback, memo } from 'react';
 import { AdminLogin } from './AdminLogin';
 import { useAuth } from '../contexts/AuthContext';
-import { Button } from './ui/button';
 import { MentionsLegales } from './MentionsLegales';
 import { PolitiqueConfidentialite } from './PolitiqueConfidentialite';
 import { CGV } from './CGV';
+import { Container } from './ui/Container';
 
 // Composant pays mémorisé pour éviter les re-rendus
 const CountryCard = memo(function CountryCard({ name, flag }: { name: string; flag: string }) {
   return (
-    <div className="text-center group cursor-pointer w-[90px] sm:w-[100px] md:w-[120px]">
-      <div className="bg-white/5 backdrop-blur-sm rounded-xl p-3 sm:p-4 md:p-5 border border-white/10 group-hover:border-[#4DA6FF] group-hover:bg-white/10 transition-all duration-300 group-hover:scale-105">
+    <div className="text-center group cursor-pointer min-w-[100px]">
+      <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 group-hover:border-secondary/50 group-hover:bg-white/10 transition-all duration-300 group-hover:-translate-y-1">
         <div
-          className="text-3xl sm:text-4xl md:text-5xl mb-1 sm:mb-2 transform group-hover:scale-110 transition-transform duration-300"
-          style={{ filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))' }}
+          className="text-4xl mb-2 transform group-hover:scale-110 transition-transform duration-300 drop-shadow-md"
         >
           {flag}
         </div>
-        <p className="text-[10px] sm:text-xs text-white/90 group-hover:text-[#4DA6FF] transition-colors truncate">
+        <p className="text-xs text-primary-foreground/90 group-hover:text-secondary transition-colors truncate font-medium">
           {name}
         </p>
       </div>
@@ -27,7 +26,7 @@ const CountryCard = memo(function CountryCard({ name, flag }: { name: string; fl
   );
 });
 
-// Données des pays - en dehors du composant pour éviter les re-créations
+// Données des pays
 const COUNTRIES = [
   { name: 'Canada', flag: '🇨🇦' },
   { name: 'États-Unis', flag: '🇺🇸' },
@@ -53,7 +52,7 @@ export function Footer() {
   const [showMentionsLegales, setShowMentionsLegales] = useState(false);
   const [showPolitique, setShowPolitique] = useState(false);
   const [showCGV, setShowCGV] = useState(false);
-  const { isAuthenticated, user, logout } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
 
   const handleLogout = useCallback(() => {
     if (confirm('Voulez-vous vraiment vous déconnecter ?')) {
@@ -61,7 +60,6 @@ export function Footer() {
     }
   }, [logout]);
 
-  // Mémoriser les handlers pour éviter les re-rendus
   const openAdminLogin = useCallback(() => setShowAdminLogin(true), []);
   const closeAdminLogin = useCallback(() => setShowAdminLogin(false), []);
   const openMentionsLegales = useCallback(() => setShowMentionsLegales(true), []);
@@ -72,227 +70,163 @@ export function Footer() {
   const closeCGV = useCallback(() => setShowCGV(false), []);
 
   return (
-    <footer className="bg-[#002F6C] text-white">
+    <footer className="bg-primary text-primary-foreground">
       {/* Countries Flags Section */}
-      <div className="bg-[#001F4D] py-8 sm:py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h4 className="text-center mb-2">Nous Opérons Dans Ces Pays</h4>
-          <p className="text-center text-white/70 text-sm mb-6 sm:mb-8">Une présence internationale pour mieux vous servir</p>
-        </div>
-
-        {/* Ligne horizontale unique avec scroll */}
-        <div
-          className="scrollbar-hide"
-          style={{
-            overflowX: 'auto',
-            overflowY: 'hidden',
-            WebkitOverflowScrolling: 'touch',
-            paddingBottom: '1rem'
-          }}
-        >
-          <div
-            className="flex gap-2 sm:gap-3 md:gap-4 px-4"
-            style={{
-              width: 'max-content',
-              margin: '0 auto'
-            }}
-          >
-            {COUNTRIES.map((country, index) => (
-              <CountryCard key={index} name={country.name} flag={country.flag} />
-            ))}
+      <div className="bg-black/20 py-12">
+        <Container>
+          <div className="text-center mb-8">
+            <h4 className="font-heading text-2xl font-bold mb-2 text-white">Nous Opérons Dans Ces Pays</h4>
+            <p className="text-primary-foreground/70">Une présence internationale pour mieux vous servir</p>
           </div>
-        </div>
+
+          <div className="relative">
+            {/* Gradient fade masks for scroll indication could be added here */}
+            <div
+              className="scrollbar-hide flex gap-4 overflow-x-auto pb-4 snap-x"
+            >
+              {COUNTRIES.map((country, index) => (
+                <CountryCard key={index} name={country.name} flag={country.flag} />
+              ))}
+            </div>
+          </div>
+        </Container>
       </div>
 
       {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <Container className="py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
-          <div>
+          <div className="space-y-6">
             <img
-              src={image_a3e94e1254122a1ce127e1521b608a1d24b5d21a}
+              src={logoImage}
               alt="OMEGA24 CONSULTING"
-              className="h-16 w-auto mb-4"
+              className="h-16 w-auto"
             />
-            <p className="text-white/80 text-sm mb-4">
-              Votre partenaire pour réaliser vos rêves d'études à l'étranger.
+            <p className="text-primary-foreground/80 text-sm leading-relaxed">
+              Votre partenaire de confiance pour réaliser vos rêves d'études à l'étranger et sécuriser votre avenir.
             </p>
-            <div className="flex space-x-3">
-              <a href="https://www.facebook.com/profile.php?id=61561081688272&locale=fr_FR" className="w-8 h-8 bg-white/10 hover:bg-[#4DA6FF] rounded-full flex items-center justify-center transition-colors">
-                <Facebook className="w-4 h-4" />
-              </a>
-              <a href="mailto:infos@omega24consulting.com" className="w-8 h-8 bg-white/10 hover:bg-[#4DA6FF] rounded-full flex items-center justify-center transition-colors">
-                <Mail className="w-4 h-4" />
-              </a>
-              <a href="https://vm.tiktok.com/ZMHwSjHtVF69t-289WW/" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-white/10 hover:bg-[#4DA6FF] rounded-full flex items-center justify-center transition-colors">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
-                  <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
-                </svg>
-              </a>
-              <a href="https://www.linkedin.com/company/omega24-consulting/" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-white/10 hover:bg-[#4DA6FF] rounded-full flex items-center justify-center transition-colors">
-                <Linkedin className="w-4 h-4" />
-              </a>
-              <a href="https://www.instagram.com/omega24consulting?igsh=MXgyaTV2ejAzYW15NQ==" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-white/10 hover:bg-[#4DA6FF] rounded-full flex items-center justify-center transition-colors">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
-                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                </svg>
-              </a>
+            <div className="flex gap-4">
+              {[
+                { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61561081688272&locale=fr_FR" },
+                { icon: Instagram, href: "https://www.instagram.com/omega24consulting/" },
+                { icon: Linkedin, href: "https://www.linkedin.com/company/omega24-consulting/" },
+                { icon: Mail, href: "mailto:infos@omega24consulting.com" }
+              ].map((social, i) => (
+                <a
+                  key={i}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-white/10 hover:bg-secondary hover:text-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+                >
+                  <social.icon className="w-5 h-5" />
+                </a>
+              ))}
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="mb-4">Liens Rapides</h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a href="#accueil" className="text-white/80 hover:text-[#4DA6FF] transition-colors">
-                  Accueil
-                </a>
-              </li>
-              <li>
-                <a href="#cequenoousproposons" className="text-white/80 hover:text-[#4DA6FF] transition-colors">
-                  Ce Que Nous Proposons
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="text-white/80 hover:text-[#4DA6FF] transition-colors">
-                  Nos Services
-                </a>
-              </li>
-              <li>
-                <a href="#apropos" className="text-white/80 hover:text-[#4DA6FF] transition-colors">
-                  À Propos
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="text-white/80 hover:text-[#4DA6FF] transition-colors">
-                  Contact
-                </a>
-              </li>
+            <h4 className="font-heading text-lg font-semibold mb-6 text-white">Liens Rapides</h4>
+            <ul className="space-y-3 text-sm">
+              {['Accueil', 'Ce Que Nous Proposons', 'Nos Services', 'À Propos', 'Contact'].map((item) => (
+                <li key={item}>
+                  <a
+                    href={`#${item.toLowerCase().replace(/\s+/g, '')}`}
+                    className="text-primary-foreground/70 hover:text-secondary hover:pl-2 transition-all inline-flex items-center gap-2"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-secondary/50"></span>
+                    {item}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Services */}
           <div>
-            <h4 className="mb-4">Nos Domaines</h4>
-            <ul className="space-y-2 text-sm">
-              <li className="text-white/80">Accompagnement aux Études</li>
-              <li className="text-white/80">Contrats de Travail</li>
-              <li className="text-white/80">Billeterie Aérienne</li>
-              <li className="text-white/80">Assurances</li>
-              <li className="text-white/80">Gestion Locative</li>
-              <li className="text-white/80">Comptabilité</li>
+            <h4 className="font-heading text-lg font-semibold mb-6 text-white">Nos Domaines</h4>
+            <ul className="space-y-3 text-sm">
+              {[
+                'Accompagnement aux Études',
+                'Contrats de Travail',
+                'Billeterie Aérienne',
+                'Assurances',
+                'Gestion Locative',
+                'Comptabilité'
+              ].map((item) => (
+                <li key={item} className="text-primary-foreground/70 flex items-center gap-2">
+                  <CheckCheck className="w-4 h-4 text-secondary" />
+                  {item}
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <h4 className="mb-4">Contact</h4>
-            <ul className="space-y-3 text-sm">
-              <li className="flex items-start gap-2">
-                <Phone className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#4DA6FF]" />
+            <h4 className="font-heading text-lg font-semibold mb-6 text-white">Contact</h4>
+            <ul className="space-y-4 text-sm">
+              <li className="flex items-start gap-3 group">
+                <div className="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center group-hover:bg-secondary transition-colors">
+                  <Phone className="w-4 h-4 text-secondary group-hover:text-white" />
+                </div>
                 <div>
-                  <span className="text-white/80">+229 01 41 31 22 22</span>
-                  <br />
-                  <span className="text-white/80">+229 01 90 57 42 42</span>
+                  <p className="font-medium text-white mb-1">Téléphone</p>
+                  <span className="text-primary-foreground/70 block">+229 01 41 31 22 22</span>
+                  <span className="text-primary-foreground/70">+229 01 90 57 42 42</span>
                 </div>
               </li>
-              <li className="flex items-start gap-2">
-                <Mail className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#4DA6FF]" />
-                <span className="text-white/80 break-all">
-                  infos@omega24consulting.com
-                </span>
+              <li className="flex items-start gap-3 group">
+                <div className="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center group-hover:bg-secondary transition-colors">
+                  <Mail className="w-4 h-4 text-secondary group-hover:text-white" />
+                </div>
+                <div>
+                  <p className="font-medium text-white mb-1">Email</p>
+                  <span className="text-primary-foreground/70 break-all">
+                    infos@omega24consulting.com
+                  </span>
+                </div>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Admin Section */}
-        <div className="border-t border-white/10 mt-8 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            {isAuthenticated ? (
-              <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
-                <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm px-4 py-3 rounded-lg border border-white/20">
-                  <div className="w-10 h-10 bg-[#4DA6FF] rounded-full flex items-center justify-center">
-                    <User className="w-5 h-5 text-white" />
-                  </div>
-                  <div className="text-left">
-                    <p className="text-xs text-white/60">Connecté en tant que</p>
-                    <p className="text-white">
-                      {user?.email || 'Administrateur'}
-                    </p>
-                  </div>
-                </div>
-                <Button
-                  onClick={handleLogout}
-                  variant="outline"
-                  className="border-white/30 text-white hover:bg-red-500 hover:border-red-500 hover:text-white bg-[rgb(249,9,9)]"
-                >
-                  <LogOut className="w-4 h-4 mr-2" />
-                  Déconnexion
-                </Button>
-              </div>
-            ) : (
-              <Button
-                onClick={openAdminLogin}
-                className="bg-white/10 hover:bg-[#4DA6FF] text-white border border-white/20 backdrop-blur-sm"
-              >
-                <Lock className="w-4 h-4 mr-2" />
-                Espace Administrateur
-              </Button>
-            )}
-          </div>
-        </div>
-
         {/* Bottom Bar */}
-        <div className="border-t border-white/10 mt-8 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/60">
-            <p>© {new Date().getFullYear()} OMEGA24 CONSULTING. Tous droits réservés.</p>
-            <div className="flex gap-6">
-              <button
-                className="hover:text-[#4DA6FF] transition-colors"
-                onClick={openMentionsLegales}
-              >
-                Mentions Légales
-              </button>
-              <button
-                className="hover:text-[#4DA6FF] transition-colors"
-                onClick={openPolitique}
-              >
-                Politique de Confidentialité
-              </button>
-              <button
-                className="hover:text-[#4DA6FF] transition-colors"
-                onClick={openCGV}
-              >
-                CGV
-              </button>
+        <div className="border-t border-white/10 mt-16 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <p className="text-sm text-primary-foreground/50">
+              © {new Date().getFullYear()} OMEGA24 CONSULTING. Tous droits réservés.
+            </p>
+
+            {/* Admin & Legal */}
+            <div className="flex flex-wrap justify-center gap-6 text-sm">
+              <button onClick={openMentionsLegales} className="text-primary-foreground/50 hover:text-secondary transition-colors">Mentions Légales</button>
+              <button onClick={openPolitique} className="text-primary-foreground/50 hover:text-secondary transition-colors">Politique de Confidentialité</button>
+              <button onClick={openCGV} className="text-primary-foreground/50 hover:text-secondary transition-colors">CGV</button>
+
+              <div className="w-px h-4 bg-white/20 hidden md:block"></div>
+
+              {isAuthenticated ? (
+                <button onClick={handleLogout} className="text-red-400 hover:text-red-300 transition-colors flex items-center gap-2">
+                  <LogOut className="w-4 h-4" /> Déconnexion
+                </button>
+              ) : (
+                <button onClick={openAdminLogin} className="text-primary-foreground/50 hover:text-secondary transition-colors flex items-center gap-2">
+                  <Lock className="w-3 h-3" /> Admin
+                </button>
+              )}
             </div>
           </div>
         </div>
-      </div>
+      </Container>
 
-      {/* Admin Login Modal */}
-      {showAdminLogin && (
-        <AdminLogin onClose={closeAdminLogin} />
-      )}
 
-      {/* Mentions Legales Modal */}
-      {showMentionsLegales && (
-        <MentionsLegales onClose={closeMentionsLegales} />
-      )}
-
-      {/* Politique Confidentialite Modal */}
-      {showPolitique && (
-        <PolitiqueConfidentialite onClose={closePolitique} />
-      )}
-
-      {/* CGV Modal */}
-      {showCGV && (
-        <CGV onClose={closeCGV} />
-      )}
+      {/* Modals */}
+      {showAdminLogin && <AdminLogin onClose={closeAdminLogin} />}
+      {showMentionsLegales && <MentionsLegales onClose={closeMentionsLegales} />}
+      {showPolitique && <PolitiqueConfidentialite onClose={closePolitique} />}
+      {showCGV && <CGV onClose={closeCGV} />}
     </footer>
   );
 }

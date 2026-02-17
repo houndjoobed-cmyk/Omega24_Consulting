@@ -1,10 +1,13 @@
-import { GraduationCap, Briefcase, Plane, Shield, Home, Calculator } from 'lucide-react';
+import { GraduationCap, Briefcase, Plane, Shield, Home, Calculator, Check } from 'lucide-react';
+import { Container } from './ui/Container';
+import { cn } from './ui/utils';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from './ui/card';
 
 export function WhatWeOffer() {
   const offers = [
     {
       icon: GraduationCap,
-      title: 'Accompagnement aux Études - DREAM VOYAGE',
+      title: 'Accompagnement aux Études',
       description: 'Nous vous accompagnons dans vos projets d\'études à l\'extérieur. Un meilleur choix pour un meilleur avenir.',
       countries: ['Canada', 'États-Unis', 'France', 'Belgique', 'Russie', 'Brésil', 'Luxembourg', 'Turquie', 'Allemagne', 'Roumanie', 'Irlande'],
       features: [
@@ -14,28 +17,28 @@ export function WhatWeOffer() {
         'Assistance logement',
         'Assistance conseils'
       ],
-      color: '#4DA6FF'
+      color: 'bg-primary'
     },
     {
       icon: Briefcase,
       title: 'Recherche de Contrat de Travail',
       description: 'Accompagnement pour trouver un contrat de travail dans 13 pays',
       countries: ['Allemagne', 'Suède', 'Pologne', 'Slovaquie', 'République Tchèque', 'Roumanie', 'Serbie', 'Canada', 'Bulgarie', 'Qatar', 'Hongrie', 'Biélorussie', 'Ukraine'],
-      color: '#002F6C'
+      color: 'bg-secondary'
     },
     {
       icon: Plane,
       title: 'Billeterie',
       description: 'Service de réservation et vente de billets d\'avion avec les meilleures compagnies',
       features: ['Tarifs compétitifs', 'Compagnies internationales', 'Offres en OR'],
-      color: '#4DA6FF'
+      color: 'bg-primary'
     },
     {
       icon: Shield,
       title: 'Assurance',
       description: 'Tous types d\'assurances pour vous protéger et sécuriser votre avenir',
       features: ['Assurance Santé & Vie', 'Assurance Voyage', 'Assurance Auto et Moto', 'Assurance Habitation', 'Assurance Tous Risques'],
-      color: '#002F6C'
+      color: 'bg-secondary'
     },
     {
       icon: Home,
@@ -50,7 +53,7 @@ export function WhatWeOffer() {
         'Vérification des parcelles auprès de l\'IGN',
         'Recouvrement des créances'
       ],
-      color: '#4DA6FF'
+      color: 'bg-primary'
     },
     {
       icon: Calculator,
@@ -66,22 +69,22 @@ export function WhatWeOffer() {
         'Attestation fiscale, Non faillite, CNSS',
         'Tenu de la comptabilité & Externalisation'
       ],
-      color: '#002F6C'
+      color: 'bg-secondary'
     }
   ];
 
   return (
-    <section id="cequenoousproposons" className="bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="cequenoousproposons" className="py-24 bg-background">
+      <Container>
         {/* Section Header */}
-        <div className="text-center mb-12 animate-fade-in-up">
-          <div className="inline-block bg-[#4DA6FF]/10 px-4 py-2 rounded-full mb-4">
-            <span className="text-[#4DA6FF]">Notre Expertise</span>
+        <div className="text-center mb-16 animate-fade-in-up">
+          <div className="inline-block bg-primary/10 px-4 py-2 rounded-full mb-4">
+            <span className="text-primary font-semibold text-sm uppercase tracking-wider">Notre Expertise</span>
           </div>
-          <h2 className="text-[#002F6C] mb-4">
+          <h2 className="text-3xl md:text-5xl font-heading font-bold text-foreground mb-6">
             Ce Que Nous Proposons
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
             OMEGA24 CONSULTING vous offre une gamme complète de services pour
             accompagner tous vos projets personnels et professionnels.
           </p>
@@ -92,79 +95,80 @@ export function WhatWeOffer() {
           {offers.map((offer, index) => {
             const Icon = offer.icon;
             return (
-              <div
+              <Card
                 key={index}
-                className="bg-[#F4F4F4] rounded-lg p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 animate-fade-in-up"
+                className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-muted"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div
-                  className="w-16 h-16 rounded-lg flex items-center justify-center mb-6"
-                  style={{ backgroundColor: offer.color }}
-                >
-                  <Icon className="w-8 h-8 text-white" />
-                </div>
-
-                <h3 className="text-[#002F6C] mb-3">
-                  {offer.title}
-                </h3>
-
-                <p className="text-gray-600 mb-4">
-                  {offer.description}
-                </p>
-
-                {offer.countries && (
-                  <div className="mt-4">
-                    <p className="text-sm text-[#4DA6FF] mb-2">
-                      Pays disponibles :
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {offer.countries.map((country, idx) => (
-                        <span
-                          key={idx}
-                          className="text-xs bg-white px-3 py-1 rounded-full text-gray-700"
-                        >
-                          {country}
-                        </span>
-                      ))}
-                    </div>
+                <CardHeader>
+                  <div
+                    className={cn("w-14 h-14 rounded-2xl flex items-center justify-center mb-4 transition-transform group-hover:rotate-6", offer.color)}
+                  >
+                    <Icon className="w-7 h-7 text-white" />
                   </div>
-                )}
+                  <CardTitle className="text-xl mb-2 group-hover:text-primary transition-colors">{offer.title}</CardTitle>
+                  <CardDescription>{offer.description}</CardDescription>
+                </CardHeader>
 
-                {offer.features && (
-                  <ul className="mt-4 space-y-2">
-                    {offer.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-sm text-gray-600">
-                        <span className="text-[#4DA6FF] mt-1">▸</span>
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
+                <CardContent>
+                  {offer.countries && (
+                    <div className="mb-6">
+                      <p className="text-xs font-semibold text-secondary uppercase tracking-wider mb-2">
+                        Pays disponibles
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {offer.countries.map((country, idx) => (
+                          <span
+                            key={idx}
+                            className="text-[10px] bg-muted px-2 py-1 rounded-sm text-muted-foreground border border-muted-foreground/10"
+                          >
+                            {country}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {offer.features && (
+                    <ul className="space-y-2">
+                      {offer.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-start gap-2 text-sm text-foreground/80">
+                          <span className="text-primary mt-0.5"><Check className="w-4 h-4" /></span>
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </CardContent>
+              </Card>
             );
           })}
         </div>
 
         {/* CTA Section */}
-        <div className="mt-16 bg-gradient-to-r from-[#002F6C] to-[#4DA6FF] rounded-2xl p-12 text-center text-white">
-          <h3 className="mb-4">
-            Besoin d'un Service Personnalisé ?
-          </h3>
-          <p className="text-white/90 text-lg mb-6 max-w-2xl mx-auto">
-            Contactez-nous pour discuter de votre projet et découvrir comment
-            nous pouvons vous accompagner dans sa réalisation.
-          </p>
-          <button
-            onClick={() => {
-              const element = document.getElementById('contact');
-              if (element) element.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="bg-white text-[#002F6C] px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors"
-          >
-            Nous Contacter
-          </button>
+        <div className="mt-20 relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary to-primary/80 px-6 py-16 text-center text-primary-foreground shadow-2xl">
+          <div className="relative z-10 max-w-3xl mx-auto">
+            <h3 className="text-3xl font-heading font-bold mb-6">
+              Besoin d'un Service Personnalisé ?
+            </h3>
+            <p className="text-primary-foreground/90 text-lg mb-8 leading-relaxed">
+              Contactez-nous pour discuter de votre projet et découvrir comment
+              nous pouvons vous accompagner dans sa réalisation.
+            </p>
+            <button
+              onClick={() => {
+                const element = document.getElementById('contact');
+                if (element) element.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="bg-white text-primary font-bold px-8 py-4 rounded-lg hover:bg-secondary hover:text-white transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
+            >
+              Nous Contacter
+            </button>
+          </div>
+          {/* Background Pattern */}
+          <div className="absolute top-0 left-0 w-full h-full bg-grid-white/[0.05] mask-image-gradient-b"></div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

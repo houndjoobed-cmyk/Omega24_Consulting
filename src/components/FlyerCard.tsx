@@ -11,11 +11,11 @@ interface FlyerCardProps {
 
 export function FlyerCard({ flyer, onEdit, onDelete, onView }: FlyerCardProps) {
   return (
-    <div className="group relative bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+    <div className="group relative bg-card text-card-foreground rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
       {/* Flyer Image */}
       <div className="relative h-[400px] overflow-hidden">
         <img
-          src={flyer.image}
+          src={flyer.images?.[0] || (flyer as any).image || 'https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?w=800&auto=format&fit=crop&q=60'}
           alt={flyer.title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         />

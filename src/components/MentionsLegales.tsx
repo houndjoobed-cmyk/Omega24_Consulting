@@ -46,9 +46,9 @@ export function MentionsLegales({ onClose }: MentionsLegalesProps) {
           <section>
             <h3 className="text-xl text-[#002F6C] mb-3">3. Hébergement</h3>
             <div className="bg-[rgb(8,48,90)] p-4 rounded-lg space-y-2">
-              <p><strong>Hébergeur :</strong> Vercel Inc.</p>
-              <p><strong>Adresse :</strong> 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis</p>
-              <p><strong>Site web :</strong> https://vercel.com</p>
+              <p><strong>Hébergeur :</strong>Netlify</p>
+              <p><strong>Adresse :</strong>Cotonou, Bénin - Gbèdjromédé, 2ème von à droite en quittant le carrefour 16 ampoules vers le carrefour "Vodafone"</p>
+              <p><strong>Site web :</strong> omega24consulting.com</p>
             </div>
           </section>
 

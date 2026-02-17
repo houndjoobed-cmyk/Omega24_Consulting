@@ -1,4 +1,5 @@
-import { X } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState } from 'react';
 import type { Flyer } from '../App';
 
 interface FlyerViewerProps {
@@ -7,6 +8,21 @@ interface FlyerViewerProps {
 }
 
 export function FlyerViewer({ flyer, onClose }: FlyerViewerProps) {
+  // Normalize images to always have an array, supporting legacy format
+  const displayImages = flyer.images?.length > 0
+    ? flyer.images
+    : [(flyer as any).image].filter(Boolean) as string[];
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % displayImages.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + displayImages.length) % displayImages.length);
+  };
+
   return (
     <div
       className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-in fade-in duration-200"
@@ -22,24 +38,60 @@ export function FlyerViewer({ flyer, onClose }: FlyerViewerProps) {
           <X className="w-5 h-5" />
         </button>
 
-        <div className="flex flex-col md:flex-row min-h-[400px]">
-          {/* Image Section - Full width on mobile, Left side on desktop */}
-          <div className="w-full md:w-1/2 bg-gray-100 flex items-center justify-center p-4">
-            <img
-              src={flyer.image}
-              alt={flyer.title}
-              className="w-full h-auto max-h-[70vh] object-contain rounded-lg shadow-sm"
-              style={{ maxHeight: '600px' }}
-            />
+        <div className="flex flex-col md:flex-row min-h-[500px]">
+          {/* Image Section */}
+          <div className="w-full md:w-1/2 bg-gray-50 flex flex-col p-4 md:p-8">
+            {/* Main Image View */}
+            <div className="relative aspect-[4/5] bg-slate-100 flex items-center justify-center overflow-hidden rounded-lg shadow-md">
+              <img
+                src={displayImages[currentImageIndex] || 'https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?w=800&auto=format&fit=crop&q=60'}
+                alt={`${flyer.title} - Image ${currentImageIndex + 1}`}
+                className="max-w-full max-h-[60vh] object-contain transition-all duration-300"
+              />
+
+              {/* Navigation Arrows */}
+              {displayImages.length > 1 && (
+                <>
+                  <button
+                    onClick={prevImage}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-[#002F6C] p-2 rounded-full shadow-lg transition-all"
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </button>
+                  <button
+                    onClick={nextImage}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-[#002F6C] p-2 rounded-full shadow-lg transition-all"
+                  >
+                    <ChevronRight className="w-6 h-6" />
+                  </button>
+                </>
+              )}
+            </div>
+
+            {/* Thumbnail Navigation */}
+            {displayImages.length > 1 && (
+              <div className="flex gap-2 mt-4 overflow-x-auto pb-2 scrollbar-none justify-center">
+                {displayImages.map((img, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`relative w-16 h-16 flex-shrink-0 rounded-md overflow-hidden border-2 transition-all ${currentImageIndex === index ? 'border-[#4DA6FF] ring-2 ring-[#4DA6FF]/20' : 'border-transparent opacity-60 hover:opacity-100'
+                      }`}
+                  >
+                    <img src={img} alt="" className="w-full h-full object-cover" />
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Content Section */}
-          <div className="w-full md:w-1/2 p-6 md:p-10 flex flex-col overflow-y-auto">
+          <div className="w-full md:w-1/2 p-6 md:p-10 flex flex-col">
             <div className="mb-6">
-              <span className="inline-block px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-medium tracking-wide border border-blue-100 mb-4">
+              <span className="inline-block px-3 py-1 bg-[#4DA6FF]/10 text-[#002F6C] rounded-full text-xs font-semibold tracking-wide border border-[#4DA6FF]/20 mb-4">
                 Détails de l'offre
               </span>
-              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 font-heading leading-tight">
+              <h3 className="text-2xl md:text-3xl font-bold text-[#002F6C] mb-4 font-heading leading-tight">
                 {flyer.title}
               </h3>
               <p className="text-gray-600 text-lg leading-relaxed">
@@ -50,13 +102,13 @@ export function FlyerViewer({ flyer, onClose }: FlyerViewerProps) {
             {/* Details List */}
             {flyer.details && flyer.details.length > 0 && (
               <div className="mt-4 pt-6 border-t border-gray-100">
-                <h4 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
+                <h4 className="text-sm font-semibold text-[#002F6C] uppercase tracking-wider mb-4">
                   Ce qui est inclus
                 </h4>
                 <ul className="space-y-3">
                   {flyer.details.map((detail, index) => (
                     <li key={index} className="flex items-start gap-3 group">
-                      <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 group-hover:scale-125 transition-transform" />
+                      <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#4DA6FF] group-hover:scale-125 transition-transform" />
                       <span className="text-gray-600 group-hover:text-gray-900 transition-colors">
                         {detail}
                       </span>
