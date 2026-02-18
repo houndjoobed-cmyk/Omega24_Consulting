@@ -4,6 +4,42 @@ import { Container } from './ui/Container';
 import { Button } from './ui/button';
 import { cn } from '@/components/ui/utils';
 import PillNav from './ui/pill-nav';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const menuVariants = {
+  hidden: {
+    opacity: 0,
+    height: 0,
+    transition: {
+      staggerChildren: 0.05,
+      staggerDirection: -1,
+      when: "afterChildren"
+    }
+  },
+  visible: {
+    opacity: 1,
+    height: "auto",
+    transition: {
+      duration: 0.3,
+      staggerChildren: 0.1,
+      delayChildren: 0.1
+    }
+  },
+  exit: {
+    opacity: 0,
+    height: 0,
+    transition: {
+      duration: 0.2,
+      when: "afterChildren"
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: { opacity: 1, x: 0 },
+  exit: { opacity: 0, x: -20 }
+};
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -43,7 +79,14 @@ export function Header() {
   const handleNavItemClick = useCallback((id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const headerOffset = 85; // Adjust based on header height + padding
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
       setActiveSection(id);
     }
   }, []);
@@ -74,7 +117,7 @@ export function Header() {
             <Button
               size="sm"
               className="bg-secondary hover:bg-secondary/90 text-white shadow-md hover:shadow-lg transition-all"
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => handleNavItemClick('contact')}
             >
               Demander un Devis
             </Button>
@@ -92,38 +135,49 @@ export function Header() {
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-background border-b shadow-lg animate-in slide-in-from-top-2">
-            <nav className="flex flex-col p-4 space-y-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className={cn(
-                    "px-4 py-2 text-foreground hover:bg-slate-50 hover:text-primary rounded-md transition-colors font-medium",
-                    activeSection === link.id && "bg-slate-50 text-primary"
-                  )}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsMenuOpen(false);
-                    handleNavItemClick(link.id);
-                  }}
-                >
-                  {link.label}
-                </a>
-              ))}
-              <Button
-                className="w-full bg-secondary hover:bg-secondary/90 text-white mt-4"
-                onClick={() => {
-                  setIsMenuOpen(false);
-                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-              >
-                Demander un Devis
-              </Button>
-            </nav>
-          </div>
-        )}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              variants={menuVariants}
+              className="md:hidden absolute top-full left-0 right-0 bg-background border-b shadow-lg overflow-hidden"
+            >
+              <nav className="flex flex-col p-4 space-y-4">
+                {navLinks.map((link) => (
+                  <motion.a
+                    key={link.href}
+                    variants={itemVariants}
+                    href={link.href}
+                    className={cn(
+                      "px-4 py-2 text-foreground hover:bg-slate-50 hover:text-primary rounded-md transition-colors font-medium block",
+                      activeSection === link.id && "bg-slate-50 text-primary"
+                    )}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsMenuOpen(false);
+                      handleNavItemClick(link.id);
+                    }}
+                  >
+                    {link.label}
+                  </motion.a>
+                ))}
+                <motion.div variants={itemVariants}>
+                  <Button
+                    className="w-full bg-secondary hover:bg-secondary/90 text-white mt-4"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      handleNavItemClick('contact');
+                    }}
+                  >
+                    Demander un Devis
+                  </Button>
+                </motion.div>
+              </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </Container>
     </header>
   );
