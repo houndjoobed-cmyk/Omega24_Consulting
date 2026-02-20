@@ -2,7 +2,6 @@
 trigger: always_on
 ---
 
-
 # 📘 OMEGA 24 CONSULTING - Global Design System & Brand Guidelines
 
 **Context:** This rule applies to ALL frontend development, UI components, marketing materials, and page generation for "OMEGA 24 CONSULTING".
@@ -14,8 +13,8 @@ Always define and use the following CSS variables in the global `:root` or base 
 css
 :root {
   /* Primary Brand Colors */
-  --omega-dark-blue: #002F6C;  /* Stability, trust, professionalism - Use for main structure, footers, primary text */
-  --omega-light-blue: #4DA6FF; /* Modernity, technology - Use for accents, highlights, secondary elements */
+  --omega-dark-blue: #031477;  /* Stability, trust, professionalism - Use for main structure, footers, primary text */
+  --omega-light-blue: #00deff; /* Modernity, technology - Use for accents, highlights, secondary elements */
   --omega-white: #FFFFFF;      /* Purity, main backgrounds */
 
   /* Secondary / Neutral Colors */
@@ -28,8 +27,8 @@ css
 
 Apply these font stacks consistently across the project:
 
-* **Headings & Brand Display (Titles):** `'Times New Roman', Times, serif` (Must convey elegance and seriousness, usually `font-weight: bold`).
-* **Body Text & UI Elements (Paragraphs, buttons, links):** `'Open Sans', 'Lato', Arial, sans-serif` (Must ensure maximum readability on digital platforms).
+* **Headings & Brand Display (Titles):** `'Montserrat bold(Espacement -50)', Hanson bold,sans-serif` (Must convey elegance and seriousness, usually `font-weight: bold`).
+* **Body Text & UI Elements (Paragraphs, buttons, links):** `'Montserrat regular', 'Lato', Montserrat, sans-serif` (Must ensure maximum readability on digital platforms).
 
 ## 3. Logo & Visual Asset Usage
 
@@ -49,5 +48,3 @@ When integrating or styling the Omega 24 Consulting logo or visual assets:
 
 * **Buttons & CTAs:** Use `--omega-dark-blue` for primary actions and `--omega-light-blue` for secondary actions. Always ensure text contrast (e.g., `--omega-white` text on dark blue background).
 * **Backgrounds:** Rely heavily on `--omega-white` and `--omega-light-gray` to maintain a clean, professional, and corporate look.
-
-

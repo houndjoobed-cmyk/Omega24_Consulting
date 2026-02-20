@@ -62,13 +62,10 @@ export default defineConfig({
   build: {
     target: 'esnext',
     outDir: 'dist',
-    // Optimisation de la taille des bundles
     minify: 'esbuild',
     cssMinify: true,
-    // Code splitting pour de meilleurs temps de chargement
     rollupOptions: {
       output: {
-        // Séparation des vendors pour un meilleur caching
         manualChunks: {
           'vendor-react': ['react', 'react-dom'],
           'vendor-radix': [
@@ -79,17 +76,19 @@ export default defineConfig({
             '@radix-ui/react-accordion',
           ],
           'vendor-utils': ['clsx', 'tailwind-merge', 'class-variance-authority'],
+          'vendor-icons': ['lucide-react'],
+          'vendor-animation': ['framer-motion'],
+          'vendor-supabase': ['@supabase/supabase-js'],
         },
-        // Noms de fichiers optimisés pour le cache
         chunkFileNames: 'assets/js/[name]-[hash].js',
         entryFileNames: 'assets/js/[name]-[hash].js',
         assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
       },
     },
-    // Génération de sourcemaps uniquement en dev
     sourcemap: false,
-    // Limite de taille de chunk pour les avertissements
     chunkSizeWarningLimit: 1000,
+    // Inline small assets to avoid extra HTTP requests
+    assetsInlineLimit: 4096,
   },
   // Optimisation des dépendances
   optimizeDeps: {

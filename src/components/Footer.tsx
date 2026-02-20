@@ -1,4 +1,4 @@
-import logoImage from '@/assets/logo-omega.png';
+import logoImage from '@/assets/Log Oméga24 BLANC B.png';
 import { Facebook, Linkedin, Instagram, Mail, Phone, Lock, LogOut, CheckCheck } from 'lucide-react';
 import { useState, useCallback, memo } from 'react';
 import { AdminLogin } from './AdminLogin';
@@ -72,7 +72,7 @@ export function Footer() {
   return (
     <footer className="bg-primary text-primary-foreground">
       {/* Countries Flags Section */}
-      <div className="bg-black/20 py-12">
+      <div className="py-12">
         <Container>
           <div className="text-center mb-8">
             <h4 className="font-heading text-2xl font-bold mb-2 text-white">Nous Opérons Dans Ces Pays</h4>
@@ -92,134 +92,135 @@ export function Footer() {
         </Container>
       </div>
 
-      {/* Main Footer Content */}
-      <Container className="py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Company Info */}
-          <div className="space-y-6">
-            <img
-              src={logoImage}
-              alt="OMEGA24 CONSULTING"
-              className="h-16 w-auto"
-            />
-            <p className="text-primary-foreground/80 text-sm leading-relaxed">
-              Votre partenaire de confiance pour réaliser vos rêves d'études à l'étranger et sécuriser votre avenir.
-            </p>
-            <div className="flex gap-4">
-              {[
-                { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61561081688272&locale=fr_FR" },
-                { icon: Instagram, href: "https://www.instagram.com/omega24consulting/" },
-                { icon: Linkedin, href: "https://www.linkedin.com/company/omega24-consulting/" },
-                { icon: Mail, href: "mailto:infos@omega24consulting.com" }
-              ].map((social, i) => (
-                <a
-                  key={i}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-white/10 hover:bg-secondary hover:text-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
-                >
-                  <social.icon className="w-5 h-5" />
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-heading text-lg font-semibold mb-6 text-white">Liens Rapides</h4>
-            <ul className="space-y-3 text-sm">
-              {['Accueil', 'Ce Que Nous Proposons', 'Nos Services', 'À Propos', 'Contact'].map((item) => (
-                <li key={item}>
+      <div className="bg-black/20">
+        <Container className="py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            {/* Company Info */}
+            <div className="space-y-6">
+              <img
+                src={logoImage}
+                alt="Omega24 Consulting"
+                className="h-16 w-auto"
+              />
+              <p className="text-primary-foreground/80 text-sm leading-relaxed">
+                Votre partenaire de confiance pour réaliser vos rêves d'études à l'étranger et sécuriser votre avenir.
+              </p>
+              <div className="flex gap-4">
+                {[
+                  { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61561081688272&locale=fr_FR" },
+                  { icon: Instagram, href: "https://www.instagram.com/omega24consulting/" },
+                  { icon: Linkedin, href: "https://www.linkedin.com/company/omega24-consulting/" },
+                  { icon: Mail, href: "mailto:infos@omega24consulting.com" }
+                ].map((social, i) => (
                   <a
-                    href={`#${item.toLowerCase().replace(/\s+/g, '')}`}
-                    className="text-primary-foreground/70 hover:text-secondary hover:pl-2 transition-all inline-flex items-center gap-2"
+                    key={i}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 bg-white/10 hover:bg-secondary hover:text-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-secondary/50"></span>
-                    {item}
+                    <social.icon className="w-5 h-5" />
                   </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="font-heading text-lg font-semibold mb-6 text-white">Liens Rapides</h4>
+              <ul className="space-y-3 text-sm">
+                {['Accueil', 'Ce Que Nous Proposons', 'Nos Services', 'À Propos', 'Contact'].map((item) => (
+                  <li key={item}>
+                    <a
+                      href={`#${item.toLowerCase().replace(/\s+/g, '')}`}
+                      className="text-primary-foreground/70 hover:text-secondary hover:pl-2 transition-all inline-flex items-center gap-2"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-secondary/50"></span>
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Services */}
+            <div>
+              <h4 className="font-heading text-lg font-semibold mb-6 text-white">Nos Domaines</h4>
+              <ul className="space-y-3 text-sm">
+                {[
+                  'Accompagnement aux Études',
+                  'Contrats de Travail',
+                  'Billeterie Aérienne',
+                  'Assurances',
+                  'Gestion Locative',
+                  'Comptabilité'
+                ].map((item) => (
+                  <li key={item} className="text-primary-foreground/70 flex items-center gap-2">
+                    <CheckCheck className="w-4 h-4 text-secondary" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contact */}
+            <div>
+              <h4 className="font-heading text-lg font-semibold mb-6 text-white">Contact</h4>
+              <ul className="space-y-4 text-sm">
+                <li className="flex items-start gap-3 group">
+                  <div className="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center group-hover:bg-secondary transition-colors">
+                    <Phone className="w-4 h-4 text-secondary group-hover:text-white" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-white mb-1">Téléphone</p>
+                    <span className="text-primary-foreground/70 block">+229 01 41 31 22 22</span>
+                    <span className="text-primary-foreground/70">+229 01 90 57 42 42</span>
+                  </div>
                 </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h4 className="font-heading text-lg font-semibold mb-6 text-white">Nos Domaines</h4>
-            <ul className="space-y-3 text-sm">
-              {[
-                'Accompagnement aux Études',
-                'Contrats de Travail',
-                'Billeterie Aérienne',
-                'Assurances',
-                'Gestion Locative',
-                'Comptabilité'
-              ].map((item) => (
-                <li key={item} className="text-primary-foreground/70 flex items-center gap-2">
-                  <CheckCheck className="w-4 h-4 text-secondary" />
-                  {item}
+                <li className="flex items-start gap-3 group">
+                  <div className="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center group-hover:bg-secondary transition-colors">
+                    <Mail className="w-4 h-4 text-secondary group-hover:text-white" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-white mb-1">Email</p>
+                    <span className="text-primary-foreground/70 break-all">
+                      infos@omega24consulting.com
+                    </span>
+                  </div>
                 </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4 className="font-heading text-lg font-semibold mb-6 text-white">Contact</h4>
-            <ul className="space-y-4 text-sm">
-              <li className="flex items-start gap-3 group">
-                <div className="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center group-hover:bg-secondary transition-colors">
-                  <Phone className="w-4 h-4 text-secondary group-hover:text-white" />
-                </div>
-                <div>
-                  <p className="font-medium text-white mb-1">Téléphone</p>
-                  <span className="text-primary-foreground/70 block">+229 01 41 31 22 22</span>
-                  <span className="text-primary-foreground/70">+229 01 90 57 42 42</span>
-                </div>
-              </li>
-              <li className="flex items-start gap-3 group">
-                <div className="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center group-hover:bg-secondary transition-colors">
-                  <Mail className="w-4 h-4 text-secondary group-hover:text-white" />
-                </div>
-                <div>
-                  <p className="font-medium text-white mb-1">Email</p>
-                  <span className="text-primary-foreground/70 break-all">
-                    infos@omega24consulting.com
-                  </span>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="border-t border-white/10 mt-16 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <p className="text-sm text-primary-foreground/50">
-              © {new Date().getFullYear()} OMEGA24 CONSULTING. Tous droits réservés.
-            </p>
-
-            {/* Admin & Legal */}
-            <div className="flex flex-wrap justify-center gap-6 text-sm">
-              <button onClick={openMentionsLegales} className="text-primary-foreground/50 hover:text-secondary transition-colors">Mentions Légales</button>
-              <button onClick={openPolitique} className="text-primary-foreground/50 hover:text-secondary transition-colors">Politique de Confidentialité</button>
-              <button onClick={openCGV} className="text-primary-foreground/50 hover:text-secondary transition-colors">CGV</button>
-
-              <div className="w-px h-4 bg-white/20 hidden md:block"></div>
-
-              {isAuthenticated ? (
-                <button onClick={handleLogout} className="text-red-400 hover:text-red-300 transition-colors flex items-center gap-2">
-                  <LogOut className="w-4 h-4" /> Déconnexion
-                </button>
-              ) : (
-                <button onClick={openAdminLogin} className="text-primary-foreground/50 hover:text-secondary transition-colors flex items-center gap-2">
-                  <Lock className="w-3 h-3" /> Admin
-                </button>
-              )}
+              </ul>
             </div>
           </div>
-        </div>
-      </Container>
+
+          {/* Bottom Bar */}
+          <div className="border-t border-white/10 mt-16 pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+              <p className="text-sm text-primary-foreground/50">
+                © {new Date().getFullYear()} Omega24 Consulting. Tous droits réservés.
+              </p>
+
+              {/* Admin & Legal */}
+              <div className="flex flex-wrap justify-center gap-6 text-sm">
+                <button onClick={openMentionsLegales} className="text-primary-foreground/50 hover:text-secondary transition-colors">Mentions Légales</button>
+                <button onClick={openPolitique} className="text-primary-foreground/50 hover:text-secondary transition-colors">Politique de Confidentialité</button>
+                <button onClick={openCGV} className="text-primary-foreground/50 hover:text-secondary transition-colors">CGV</button>
+
+                <div className="w-px h-4 bg-white/20 hidden md:block"></div>
+
+                {isAuthenticated ? (
+                  <button onClick={handleLogout} className="text-red-400 hover:text-red-300 transition-colors flex items-center gap-2">
+                    <LogOut className="w-4 h-4" /> Déconnexion
+                  </button>
+                ) : (
+                  <button onClick={openAdminLogin} className="text-primary-foreground/50 hover:text-secondary transition-colors flex items-center gap-2">
+                    <Lock className="w-3 h-3" /> Admin
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        </Container>
+      </div>
 
 
       {/* Modals */}
@@ -227,6 +228,6 @@ export function Footer() {
       {showMentionsLegales && <MentionsLegales onClose={closeMentionsLegales} />}
       {showPolitique && <PolitiqueConfidentialite onClose={closePolitique} />}
       {showCGV && <CGV onClose={closeCGV} />}
-    </footer>
+    </footer >
   );
 }
