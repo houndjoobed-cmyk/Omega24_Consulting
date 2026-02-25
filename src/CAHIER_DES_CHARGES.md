@@ -1,10 +1,10 @@
 # 📋 CAHIER DES CHARGES
-## Site Web OMEGA24 CONSULTING
+## Site Web Oméga24 Consulting
 
 ---
 
 **Projet** : Site Web Institutionnel et Plateforme de Services  
-**Client** : OMEGA24 CONSULTING  
+**Client** : Oméga24 Consulting  
 **Date de création** : Décembre 2024  
 **Version** : 1.0  
 **Statut** : ✅ Projet Réalisé et Déployé
@@ -32,7 +32,7 @@
 
 ### 1.1 Contexte
 
-OMEGA24 CONSULTING est une agence de consulting éducatif basée à Cotonou, Bénin, spécialisée dans l'accompagnement des étudiants souhaitant poursuivre leurs études à l'étranger.
+Oméga24 Consulting est une agence de consulting éducatif basée à Cotonou, Bénin, spécialisée dans l'accompagnement des étudiants souhaitant poursuivre leurs études à l'étranger.
 
 ### 1.2 Besoin Client
 
@@ -793,7 +793,7 @@ RESEND_API_KEY            # Secret
 
 ### ✅ Projet Livré avec Succès
 
-**OMEGA24 CONSULTING dispose maintenant d'un site web professionnel, moderne et performant qui répond à tous les objectifs définis.**
+**Oméga24 Consulting dispose maintenant d'un site web professionnel, moderne et performant qui répond à tous les objectifs définis.**
 
 ### Chiffres Clés
 - **10 sections** fonctionnelles
@@ -826,5 +826,5 @@ RESEND_API_KEY            # Secret
 
 **Date de finalisation** : Décembre 2024  
 **Réalisé par** : Figma Make AI  
-**Client** : OMEGA24 CONSULTING  
+**Client** : Oméga24 Consulting  
 **Version** : 1.0 - Production Ready ✅

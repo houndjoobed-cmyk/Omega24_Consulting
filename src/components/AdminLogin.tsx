@@ -61,7 +61,7 @@ export function AdminLogin({ onClose, onLoginSuccess }: AdminLoginProps) {
               <h2 className="text-white mb-4">
                 Connexion Administrateur
               </h2>
-              <p className="text-white/80 text-sm">OMEGA24 CONSULTING</p>
+              <p className="text-white/80 text-sm">Oméga24 Consulting</p>
             </div>
           </div>
         </div>

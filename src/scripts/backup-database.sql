@@ -1,6 +1,6 @@
 -- ========================================
 -- SCRIPT DE SAUVEGARDE (BACKUP)
--- OMEGA24 CONSULTING
+-- Oméga24 Consulting
 -- ========================================
 -- 
 -- Ce script crée une copie de sauvegarde de toutes les données

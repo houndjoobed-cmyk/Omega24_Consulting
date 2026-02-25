@@ -295,7 +295,7 @@ SELECT email, created_at FROM auth.users ORDER BY created_at DESC;
 
 ```
 =================================
-COMPTE ADMIN OMEGA24 CONSULTING
+COMPTE ADMIN Oméga24 Consulting
 =================================
 
 Email: admin@omega24consulting.com

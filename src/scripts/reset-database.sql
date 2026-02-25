@@ -1,6 +1,6 @@
 -- ========================================
 -- SCRIPT DE RÉINITIALISATION DE LA BASE DE DONNÉES
--- OMEGA24 CONSULTING
+-- Oméga24 Consulting
 -- ========================================
 -- 
 -- Ce script permet de :
@@ -28,7 +28,7 @@ INSERT INTO kv_store_27d76fd3 (key, value) VALUES (
   '{
     "id": "1",
     "title": "Services d''Assurance",
-    "description": "OMEGA24 CONSULTING, votre partenaire de proximité pour tous vos besoins en assurance. Nous vous offrons une gamme complète de services d''assurance adaptés à vos besoins.",
+    "description": "Oméga24 Consulting, votre partenaire de proximité pour tous vos besoins en assurance. Nous vous offrons une gamme complète de services d''assurance adaptés à vos besoins.",
     "image": "figma:asset/68477f6f95a84425423fe12251a74d2fd17f1ce2.png",
     "details": [
       "Assurance Santé & Vie - Protection complète pour vous et votre famille",
@@ -92,7 +92,7 @@ INSERT INTO kv_store_27d76fd3 (key, value) VALUES (
     "role": "Étudiante en Médecine",
     "country": "Canada",
     "rating": 5,
-    "comment": "Grâce à OMEGA24 CONSULTING, j''ai pu réaliser mon rêve d''étudier la médecine au Canada. L''équipe a été très professionnelle et m''a accompagnée à chaque étape de mon projet.",
+    "comment": "Grâce à Oméga24 Consulting, j''ai pu réaliser mon rêve d''étudier la médecine au Canada. L''équipe a été très professionnelle et m''a accompagnée à chaque étape de mon projet.",
     "photo": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400",
     "date": "2024-11-15T10:00:00Z"
   }'::jsonb
@@ -106,7 +106,7 @@ INSERT INTO kv_store_27d76fd3 (key, value) VALUES (
     "role": "Étudiant en Ingénierie",
     "country": "France",
     "rating": 5,
-    "comment": "Service exceptionnel ! J''ai obtenu mon admission en école d''ingénieurs en France en moins de 3 mois. Je recommande vivement OMEGA24 CONSULTING.",
+    "comment": "Service exceptionnel ! J''ai obtenu mon admission en école d''ingénieurs en France en moins de 3 mois. Je recommande vivement Oméga24 Consulting.",
     "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
     "date": "2024-11-10T14:30:00Z"
   }'::jsonb

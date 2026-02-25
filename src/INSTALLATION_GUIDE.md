@@ -1,5 +1,5 @@
 # 🚀 GUIDE D'INSTALLATION
-## Site Web OMEGA24 CONSULTING
+## Site Web Oméga24 Consulting
 
 ---
 
@@ -371,7 +371,7 @@ Value: feedback-smtp.resend.com
 
 ```typescript
 // Dans /supabase/functions/server/email.tsx, ligne 91
-from: 'OMEGA24 CONSULTING <contact@omega24consulting.com>', // Au lieu de onboarding@resend.dev
+from: 'Oméga24 Consulting <contact@omega24consulting.com>', // Au lieu de onboarding@resend.dev
 ```
 
 ### 4.4 Ajouter la Clé dans Supabase
@@ -906,7 +906,7 @@ git push origin v1.0.0
 
 ## ✅ INSTALLATION TERMINÉE !
 
-**Félicitations** ! Le site OMEGA24 CONSULTING est maintenant installé et opérationnel.
+**Félicitations** ! Le site Oméga24 Consulting est maintenant installé et opérationnel.
 
 ### Prochaines Étapes
 
@@ -942,5 +942,5 @@ git push origin v1.0.0
 
 **Date** : Décembre 2024  
 **Version** : 1.0  
-**Projet** : OMEGA24 CONSULTING  
+**Projet** : Oméga24 Consulting  
 **Status** : ✅ Production Ready

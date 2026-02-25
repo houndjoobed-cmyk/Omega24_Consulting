@@ -103,7 +103,7 @@ export function Footer() {
                 className="h-16 w-auto"
               />
               <p className="text-primary-foreground/80 text-sm leading-relaxed">
-                Votre partenaire de confiance pour réaliser vos rêves d'études à l'étranger et sécuriser votre avenir.
+                Le meilleur choix pour un avenir meilleur !
               </p>
               <div className="flex gap-4">
                 {[

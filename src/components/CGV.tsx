@@ -20,7 +20,7 @@ export function CGV({ onClose }: CGVProps) {
             <FileText className="w-8 h-8" />
             <div>
               <h2 className="text-2xl">Conditions Générales de Vente</h2>
-              <p className="text-white/90 text-sm mt-1">OMEGA24 CONSULTING - Services de Consulting Éducatif</p>
+              <p className="text-white/90 text-sm mt-1">Oméga24 Consulting - Services de Consulting Éducatif</p>
             </div>
           </div>
         </div>
@@ -32,7 +32,7 @@ export function CGV({ onClose }: CGVProps) {
             <div className="bg-blue-50 border-l-4 border-[#4DA6FF] p-4 rounded">
               <p className="text-gray-700">
                 Les présentes Conditions Générales de Vente (CGV) régissent les relations
-                contractuelles entre OMEGA24 CONSULTING et ses clients dans le cadre de
+                contractuelles entre Oméga24 Consulting et ses clients dans le cadre de
                 la fourniture de services de consulting éducatif, d'accompagnement aux études
                 à l'étranger et de services connexes.
               </p>
@@ -47,7 +47,7 @@ export function CGV({ onClose }: CGVProps) {
             </div>
 
             <p className="text-gray-700 mb-3">
-              Les présentes CGV s'appliquent à tous les services proposés par OMEGA24 CONSULTING :
+              Les présentes CGV s'appliquent à tous les services proposés par Oméga24 Consulting :
             </p>
 
             <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4">
@@ -157,7 +157,7 @@ export function CGV({ onClose }: CGVProps) {
             </div>
 
             <p className="text-gray-700 mb-3">
-              OMEGA24 CONSULTING ne peut être tenu responsable :
+              Oméga24 Consulting ne peut être tenu responsable :
             </p>
             <ul className="list-disc list-inside space-y-1 text-gray-600 ml-4">
               <li>Des refus d'admission par les établissements</li>
@@ -168,7 +168,7 @@ export function CGV({ onClose }: CGVProps) {
 
             <div className="bg-red-50 border border-red-200 p-4 rounded-lg mt-4">
               <p className="text-sm text-gray-700">
-                <strong>⚠️ Obligation de moyens :</strong> OMEGA24 CONSULTING s'engage
+                <strong>⚠️ Obligation de moyens :</strong> Oméga24 Consulting s'engage
                 à mettre en œuvre tous les moyens nécessaires pour la réussite du projet,
                 mais ne peut garantir un résultat qui dépend de décisions tierces.
               </p>

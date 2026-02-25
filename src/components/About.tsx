@@ -19,7 +19,7 @@ export function About() {
                 Votre Partenaire de Confiance pour <span className="text-primary">l'International</span>
               </h2>
               <p className="text-muted-foreground mb-6 text-lg leading-relaxed">
-                OMEGA24 CONSULTING est une agence spécialisée dans l'accompagnement
+                Oméga24 Consulting est une agence spécialisée dans l'accompagnement
                 des étudiants et professionnels qui souhaitent poursuivre leurs projets à l'étranger.
               </p>
               <p className="text-muted-foreground mb-10 leading-relaxed">
@@ -57,7 +57,7 @@ export function About() {
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
               <ImageWithFallback
                 src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.1.0&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
-                alt="Étudiants OMEGA 24 CONSULTING"
+                alt="Étudiants Oméga24 Consulting"
                 className="w-full h-[600px] object-cover hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
@@ -83,7 +83,7 @@ export function About() {
           <div className="text-center mb-12">
             <FadeIn>
               <h3 className="text-3xl font-heading font-bold text-foreground">
-                Pourquoi Choisir OMEGA24 ?
+                Pourquoi Choisir Oméga24 Consulting ?
               </h3>
             </FadeIn>
           </div>

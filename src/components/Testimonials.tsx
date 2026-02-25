@@ -530,7 +530,7 @@ export function Testimonials() {
                     id="comment"
                     value={formData.comment}
                     onChange={(e) => setFormData({ ...formData, comment: e.target.value })}
-                    placeholder="Partagez votre expérience avec OMEGA24 CONSULTING..."
+                    placeholder="Partagez votre expérience avec Oméga24 Consulting..."
                     rows={4}
                     className="bg-background"
                   />

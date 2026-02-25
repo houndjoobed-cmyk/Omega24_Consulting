@@ -8,21 +8,23 @@ export function WhatWeOffer() {
     {
       icon: GraduationCap,
       title: 'Accompagnement aux Études',
-      description: 'Nous vous accompagnons dans vos projets d\'études à l\'extérieur. Un meilleur choix pour un meilleur avenir.',
+      description: 'Nous vous accompagnons dans vos projets d\'études à l\'extérieur. Le meilleur choix pour un meilleur avenir.',
       countries: ['Canada', 'États-Unis', 'France', 'Belgique', 'Russie', 'Brésil', 'Luxembourg', 'Turquie', 'Allemagne', 'Roumanie', 'Irlande'],
       features: [
         'Visa étude',
         'Demande d\'admission',
         'Garantie financière',
         'Assistance logement',
-        'Assistance conseils'
+        'Assistance conseils',
+        'AVI'
+
       ],
       color: 'bg-primary'
     },
     {
       icon: Briefcase,
       title: 'Recherche de Contrat de Travail',
-      description: 'Accompagnement pour trouver un contrat de travail dans 13 pays',
+      description: 'Accompagnement pour trouver un contrat de travail dans plus de 13 pays',
       countries: ['Allemagne', 'Suède', 'Pologne', 'Slovaquie', 'République Tchèque', 'Roumanie', 'Serbie', 'Canada', 'Bulgarie', 'Qatar', 'Hongrie', 'Biélorussie', 'Ukraine'],
       color: 'bg-secondary'
     },
@@ -85,7 +87,7 @@ export function WhatWeOffer() {
             Ce Que Nous Proposons
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
-            OMEGA24 CONSULTING vous offre une gamme complète de services pour
+            Oméga24 Consulting vous offre une gamme complète de services pour
             accompagner tous vos projets personnels et professionnels.
           </p>
         </div>

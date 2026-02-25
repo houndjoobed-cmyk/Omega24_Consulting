@@ -1,6 +1,6 @@
 -- ========================================
 -- SCRIPT DE NETTOYAGE COMPLET
--- OMEGA24 CONSULTING
+-- Oméga24 Consulting
 -- ========================================
 -- 
 -- Ce script SUPPRIME TOUTES LES DONNÉES sans réinsérer les valeurs par défaut

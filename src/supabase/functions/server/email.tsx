@@ -36,7 +36,7 @@ export async function sendContactEmail(data: EmailData): Promise<{ success: bool
   <div class="container">
     <div class="header">
       <h1>📧 Nouveau Message de Contact</h1>
-      <p>OMEGA24 CONSULTING</p>
+      <p>Oméga24 Consulting</p>
     </div>
     <div class="content">
       <p>Vous avez reçu un nouveau message depuis le formulaire de contact du site web.</p>
@@ -73,7 +73,7 @@ export async function sendContactEmail(data: EmailData): Promise<{ success: bool
       </p>
     </div>
     <div class="footer">
-      <p>© ${new Date().getFullYear()} OMEGA24 CONSULTING. Tous droits réservés.</p>
+      <p>© ${new Date().getFullYear()} Oméga24 Consulting. Tous droits réservés.</p>
       <p>Cet email a été envoyé automatiquement depuis votre site web.</p>
     </div>
   </div>
@@ -88,7 +88,7 @@ export async function sendContactEmail(data: EmailData): Promise<{ success: bool
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: 'OMEGA24 CONSULTING <noreply@omega24consulting.com>',
+        from: 'Oméga24 Consulting <noreply@omega24consulting.com>',
         to: ['infos@omega24consulting.com'],
         reply_to: data.email,
         subject: `🔔 Nouveau message : ${data.subject}`,

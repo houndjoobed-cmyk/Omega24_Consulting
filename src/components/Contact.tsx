@@ -1,15 +1,13 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Send, Clock, MessageSquare, ArrowRight } from 'lucide-react';
+import { Mail, Phone, Send, Clock, MessageSquare, ArrowRight } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { Label } from './ui/label';
-import { FormField } from './ui/FormField';
 import { Container } from './ui/Container';
 import { Card, CardContent } from './ui/card';
 import { toast } from 'sonner';
 import { projectId, publicAnonKey } from '../utils/supabase/info';
-import { cn } from './ui/utils';
 
 export function Contact() {
   const [formData, setFormData] = useState({

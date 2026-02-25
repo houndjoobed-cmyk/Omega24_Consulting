@@ -2,7 +2,7 @@
 
 ## 🎯 Guide Complet pour Créer Plusieurs Comptes Admin
 
-Ce guide vous montre comment ajouter d'autres administrateurs à OMEGA24 CONSULTING.
+Ce guide vous montre comment ajouter d'autres administrateurs à Oméga24 Consulting.
 
 ---
 
@@ -221,7 +221,7 @@ Créez un document sécurisé avec ce format :
 
 ```
 ========================================
-ADMINISTRATEURS OMEGA24 CONSULTING
+ADMINISTRATEURS Oméga24 Consulting
 ========================================
 
 1. ADMIN PRINCIPAL

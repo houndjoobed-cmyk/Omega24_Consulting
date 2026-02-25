@@ -1,4 +1,4 @@
-# 🚀 Optimisations de Performance - OMEGA24 CONSULTING
+# 🚀 Optimisations de Performance - Oméga24 Consulting
 
 Ce document récapitule toutes les optimisations effectuées pour améliorer la fluidité et les temps de chargement du site.
 

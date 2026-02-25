@@ -12,7 +12,7 @@ const supabase = createClient(
   Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
 );
 
-console.log('🔍 Vérification de la base de données OMEGA24 CONSULTING...\n');
+console.log('🔍 Vérification de la base de données Oméga24 Consulting...\n');
 
 // Test 1: Vérifier la connexion à Supabase
 console.log('1️⃣ Test de connexion Supabase...');
@@ -96,4 +96,4 @@ console.log('   - Base de données: Opérationnelle');
 console.log('   - Structure KV: Correcte');
 console.log('   - Authentification: Fonctionnelle');
 console.log('   - Email: ' + (Deno.env.get('RESEND_API_KEY') ? 'Configuré' : 'À configurer'));
-console.log('\n🎯 Le site OMEGA24 CONSULTING est prêt à fonctionner!\n');
+console.log('\n🎯 Le site Oméga24 Consulting est prêt à fonctionner!\n');

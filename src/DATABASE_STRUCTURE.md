@@ -1,8 +1,8 @@
-# 📊 Structure de la Base de Données - OMEGA24 CONSULTING
+# 📊 Structure de la Base de Données - Oméga24 Consulting
 
 ## Vue d'ensemble
 
-Le site OMEGA24 CONSULTING utilise une base de données **Supabase** avec une table clé-valeur (`kv_store_27d76fd3`) pour stocker toutes les données de manière flexible.
+Le site Oméga24 Consulting utilise une base de données **Supabase** avec une table clé-valeur (`kv_store_27d76fd3`) pour stocker toutes les données de manière flexible.
 
 ---
 
@@ -193,7 +193,7 @@ Le fichier `/supabase/functions/server/kv_store.tsx` expose ces fonctions :
 - **Service** : Resend API
 - **Variable d'environnement** : `RESEND_API_KEY`
 - **Email destinataire** : infos@omega24consulting.com
-- **Email expéditeur** : OMEGA24 CONSULTING <onboarding@resend.dev>
+- **Email expéditeur** : Oméga24 Consulting <onboarding@resend.dev>
 
 ### Fonctionnalité
 Lorsqu'un utilisateur envoie un message via le formulaire de contact :
@@ -309,4 +309,4 @@ Elle supporte toutes les fonctionnalités actuelles :
 
 **Date de création** : 5 décembre 2024  
 **Version** : 1.0  
-**Projet** : OMEGA24 CONSULTING Website
+**Projet** : Oméga24 Consulting Website

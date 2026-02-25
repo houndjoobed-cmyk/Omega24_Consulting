@@ -31,7 +31,7 @@ export function PolitiqueConfidentialite({ onClose }: PolitiqueConfidentialitePr
           <section>
             <div className="bg-blue-50 border-l-4 border-[#4DA6FF] p-4 rounded">
               <p className="text-gray-700">
-                OMEGA24 CONSULTING s'engage à protéger la vie privée de ses utilisateurs
+                Oméga24 Consulting s'engage à protéger la vie privée de ses utilisateurs
                 et à traiter leurs données personnelles de manière transparente et sécurisée,
                 conformément aux lois en vigueur sur la protection des données.
               </p>
@@ -112,7 +112,7 @@ export function PolitiqueConfidentialite({ onClose }: PolitiqueConfidentialitePr
             </div>
 
             <p className="text-gray-700 mb-3">
-              OMEGA24 CONSULTING met en œuvre des mesures de sécurité techniques et
+              Oméga24 Consulting met en œuvre des mesures de sécurité techniques et
               organisationnelles pour protéger vos données :
             </p>
 

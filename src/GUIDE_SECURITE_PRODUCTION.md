@@ -2,7 +2,7 @@
 
 ## ⚠️ IMPORTANCE CRITIQUE
 
-Ce document détaille les mesures de sécurité **OBLIGATOIRES** avant de mettre le site OMEGA24 CONSULTING en production. Ne pas suivre ces étapes expose votre site à des risques de :
+Ce document détaille les mesures de sécurité **OBLIGATOIRES** avant de mettre le site Oméga24 Consulting en production. Ne pas suivre ces étapes expose votre site à des risques de :
 
 - 🚨 Piratage et vol de données
 - 🚨 Injection de code malveillant
@@ -559,7 +559,7 @@ const safeMessage = sanitize(data.message);
 
 1. Aller sur https://www.google.com/recaptcha/admin
 2. Créer un nouveau site :
-   - **Label :** OMEGA24 CONSULTING
+   - **Label :** Oméga24 Consulting
    - **reCAPTCHA type :** v2 "I'm not a robot"
    - **Domains :** omega24consulting.com
 3. Copier :
@@ -941,7 +941,7 @@ rclone copy ~/backups/omega24 googledrive:omega24-backups
 
 ## ✅ Conclusion
 
-En appliquant **TOUTES** ces mesures de sécurité, le site OMEGA24 CONSULTING sera :
+En appliquant **TOUTES** ces mesures de sécurité, le site Oméga24 Consulting sera :
 - ✅ Protégé contre les attaques courantes (XSS, CSRF, injection SQL)
 - ✅ Résistant au spam et aux bots
 - ✅ Sécurisé avec HTTPS/SSL

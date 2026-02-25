@@ -1,4 +1,4 @@
-# 📘 DOCUMENTATION D'INSTALLATION - OMEGA24 CONSULTING
+# 📘 DOCUMENTATION D'INSTALLATION - Oméga24 Consulting
 
 ## 📋 Table des Matières
 
@@ -128,7 +128,7 @@ npm run dev
 
 1. Ouvrir votre navigateur (Chrome, Firefox, Safari, Edge)
 2. Aller sur : http://localhost:5173/
-3. Le site OMEGA24 CONSULTING doit s'afficher ! 🎉
+3. Le site Oméga24 Consulting doit s'afficher ! 🎉
 
 ---
 
@@ -276,9 +276,9 @@ curl -X POST https://vcblcaufhcgcggnzifln.supabase.co/functions/v1/make-server-2
 2. Modifier `/supabase/functions/server/email.tsx` :
 ```typescript
 // Ligne 91 : Remplacer
-from: 'OMEGA24 CONSULTING <onboarding@resend.dev>',
+from: 'Oméga24 Consulting <onboarding@resend.dev>',
 // Par :
-from: 'OMEGA24 CONSULTING <noreply@omega24consulting.com>',
+from: 'Oméga24 Consulting <noreply@omega24consulting.com>',
 ```
 
 3. Redéployer l'Edge Function
@@ -978,7 +978,7 @@ Vous avez maintenant toutes les informations pour :
 - ✅ Gérer le contenu admin
 - ✅ Maintenir et monitorer le site
 
-Le site OMEGA24 CONSULTING est maintenant prêt pour la production ! 🚀
+Le site Oméga24 Consulting est maintenant prêt pour la production ! 🚀
 
 ---
 

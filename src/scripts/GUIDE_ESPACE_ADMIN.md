@@ -34,7 +34,7 @@ L'espace administrateur a été **déplacé dans le Footer** (pied de page) pour
 │ │  🔒 Espace Administrateur               │ │ ← CLIQUEZ ICI
 │ └─────────────────────────────────────────┘ │
 │                                             │
-│ © 2025 OMEGA24 CONSULTING                  │
+│ © 2025 Oméga24 Consulting                  │
 └─────────────────────────────────────────────┘
 ```
 
@@ -51,7 +51,7 @@ L'espace administrateur a été **déplacé dans le Footer** (pied de page) pour
 │ │ admin@omega24...       │ └──────────────┘ │
 │ └───────────────────────┘                  │
 │                                             │
-│ © 2025 OMEGA24 CONSULTING                  │
+│ © 2025 Oméga24 Consulting                  │
 └─────────────────────────────────────────────┘
 ```
 
@@ -73,7 +73,7 @@ L'espace administrateur a été **déplacé dans le Footer** (pied de page) pour
 ```
 ╔═══════════════════════════════════╗
 ║  🔒 Connexion Administrateur      ║
-║  OMEGA24 CONSULTING               ║
+║  Oméga24 Consulting               ║
 ╠═══════════════════════════════════╣
 ║                                   ║
 ║  Email:                           ║
@@ -189,7 +189,7 @@ Le bouton rouge avec icône de sortie 🚪
 ## ❓ Questions Fréquentes
 
 ### Q1 : Je ne trouve pas le bouton dans le Footer
-**R :** Défiler complètement jusqu'en bas de la page. Le bouton se trouve juste au-dessus du copyright (© 2025 OMEGA24 CONSULTING).
+**R :** Défiler complètement jusqu'en bas de la page. Le bouton se trouve juste au-dessus du copyright (© 2025 Oméga24 Consulting).
 
 ### Q2 : Le bouton "Déconnexion" n'apparaît pas
 **R :** 

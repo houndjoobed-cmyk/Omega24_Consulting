@@ -1,5 +1,5 @@
 # 🔐 GUIDE DE SÉCURITÉ ET PRODUCTION
-## Site Web OMEGA24 CONSULTING
+## Site Web Oméga24 Consulting
 
 ---
 
@@ -1253,7 +1253,7 @@ async function exportToCSV(userId: string) {
 # REGISTRE DES ACTIVITÉS DE TRAITEMENT
 
 ## Traitement 1 : Gestion des Contacts
-- Responsable : OMEGA24 CONSULTING
+- Responsable : Oméga24 Consulting
 - Finalité : Répondre aux demandes de renseignements
 - Catégories de données : Nom, email, téléphone, message
 - Catégories de personnes : Prospects, clients
@@ -1263,7 +1263,7 @@ async function exportToCSV(userId: string) {
 - Mesures de sécurité : Chiffrement TLS, RLS, backups chiffrés
 
 ## Traitement 2 : Gestion des Témoignages
-- Responsable : OMEGA24 CONSULTING
+- Responsable : Oméga24 Consulting
 - Finalité : Affichage de témoignages clients
 - Catégories de données : Nom, pays, témoignage, photo (optionnel)
 - Catégories de personnes : Clients
@@ -1487,7 +1487,7 @@ supabase functions logs --tail 10000 > incident_$(date +%Y%m%d_%H%M%S).log
 **Template Email** :
 
 ```
-Objet : Important : Incident de sécurité OMEGA24 CONSULTING
+Objet : Important : Incident de sécurité Oméga24 Consulting
 
 Cher(e) utilisateur/trice,
 
@@ -1508,7 +1508,7 @@ ACTIONS PRISES PAR OMEGA24 :
 Pour plus d'informations : security@omega24consulting.com
 
 Cordialement,
-L'équipe OMEGA24 CONSULTING
+L'équipe Oméga24 Consulting
 ```
 
 ### 12.3 Perte de Données

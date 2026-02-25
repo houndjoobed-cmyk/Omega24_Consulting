@@ -17,7 +17,7 @@ export function MentionsLegales({ onClose }: MentionsLegalesProps) {
             <X className="w-5 h-5" />
           </button>
           <h2 className="text-2xl">Mentions Légales</h2>
-          <p className="text-white/90 text-sm mt-2">OMEGA24 CONSULTING</p>
+          <p className="text-white/90 text-sm mt-2">Oméga24 Consulting</p>
         </div>
 
         {/* Content */}
@@ -26,7 +26,7 @@ export function MentionsLegales({ onClose }: MentionsLegalesProps) {
           <section>
             <h3 className="text-xl text-[#002F6C] mb-3">1. Éditeur du Site</h3>
             <div className="bg-[rgb(30,69,106)] p-4 rounded-lg space-y-2">
-              <p><strong>Raison sociale :</strong> OMEGA24 CONSULTING</p>
+              <p><strong>Raison sociale :</strong> Oméga24 Consulting</p>
               <p><strong>Forme juridique :</strong> Société de services</p>
               <p><strong>Siège social :</strong> Cotonou, Bénin</p>
               <p><strong>Email :</strong> infos@omega24consulting.com</p>
@@ -38,7 +38,7 @@ export function MentionsLegales({ onClose }: MentionsLegalesProps) {
           <section>
             <h3 className="text-xl text-[#002F6C] mb-3">2. Directeur de Publication</h3>
             <p className="text-gray-700">
-              Le directeur de la publication du site est le représentant légal de OMEGA24 CONSULTING.
+              Le directeur de la publication du site est le représentant légal de Oméga24 Consulting.
             </p>
           </section>
 
@@ -56,14 +56,14 @@ export function MentionsLegales({ onClose }: MentionsLegalesProps) {
           <section>
             <h3 className="text-xl text-[#002F6C] mb-3">4. Propriété Intellectuelle</h3>
             <p className="text-gray-700 mb-3">
-              L'ensemble des contenus présents sur le site internet de OMEGA24 CONSULTING
+              L'ensemble des contenus présents sur le site internet de Oméga24 Consulting
               (textes, images, logos, graphismes, vidéos, icônes, etc.) est la propriété
-              exclusive de OMEGA24 CONSULTING, sauf mention contraire.
+              exclusive de Oméga24 Consulting, sauf mention contraire.
             </p>
             <p className="text-gray-700">
               Toute reproduction, représentation, modification, publication, adaptation de
               tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé,
-              est interdite, sauf autorisation écrite préalable de OMEGA24 CONSULTING.
+              est interdite, sauf autorisation écrite préalable de Oméga24 Consulting.
             </p>
           </section>
 
@@ -71,7 +71,7 @@ export function MentionsLegales({ onClose }: MentionsLegalesProps) {
           <section>
             <h3 className="text-xl text-[#002F6C] mb-3">5. Données Personnelles</h3>
             <p className="text-gray-700 mb-3">
-              OMEGA24 CONSULTING s'engage à respecter la confidentialité des données
+              Oméga24 Consulting s'engage à respecter la confidentialité des données
               personnelles de ses utilisateurs conformément à la réglementation en vigueur.
             </p>
             <p className="text-gray-700">
@@ -84,7 +84,7 @@ export function MentionsLegales({ onClose }: MentionsLegalesProps) {
           <section>
             <h3 className="text-xl text-[#002F6C] mb-3">6. Cookies</h3>
             <p className="text-gray-700 mb-3">
-              Le site OMEGA24 CONSULTING peut utiliser des cookies pour améliorer l'expérience
+              Le site Oméga24 Consulting peut utiliser des cookies pour améliorer l'expérience
               utilisateur et réaliser des statistiques de visites.
             </p>
             <p className="text-gray-700">
@@ -97,16 +97,16 @@ export function MentionsLegales({ onClose }: MentionsLegalesProps) {
           <section>
             <h3 className="text-xl text-[#002F6C] mb-3">7. Limitation de Responsabilité</h3>
             <p className="text-gray-700 mb-3">
-              OMEGA24 CONSULTING met tout en œuvre pour offrir aux utilisateurs des
+              Oméga24 Consulting met tout en œuvre pour offrir aux utilisateurs des
               informations fiables et vérifiées.
             </p>
             <p className="text-gray-700 mb-3">
-              Toutefois, OMEGA24 CONSULTING ne pourra être tenu responsable des omissions,
+              Toutefois, Oméga24 Consulting ne pourra être tenu responsable des omissions,
               inexactitudes et carences dans la mise à jour, qu'elles soient de son fait
               ou du fait des tiers partenaires qui lui fournissent ces informations.
             </p>
             <p className="text-gray-700">
-              OMEGA24 CONSULTING ne pourra être tenu responsable des dommages directs ou
+              Oméga24 Consulting ne pourra être tenu responsable des dommages directs ou
               indirects résultant de l'accès au site ou de l'utilisation du site.
             </p>
           </section>

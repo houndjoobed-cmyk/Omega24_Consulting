@@ -1,4 +1,4 @@
-# ✅ CONFIGURATION COMPLÈTE - OMEGA24 CONSULTING
+# ✅ CONFIGURATION COMPLÈTE - Oméga24 Consulting
 
 **Date**: 6 décembre 2024  
 **Statut**: ✅ PROJET ENTIÈREMENT CONFIGURÉ ET FONCTIONNEL
@@ -227,7 +227,7 @@ Pour enlever "via resend.dev" dans les emails:
 4. Modifier l'email expéditeur dans le code:
    ```typescript
    // Dans /src/supabase/functions/server/email.tsx
-   from: 'OMEGA24 CONSULTING <contact@omega24consulting.com>'
+   from: 'Oméga24 Consulting <contact@omega24consulting.com>'
    ```
 
 ---

@@ -158,7 +158,7 @@ app.post('/make-server-27d76fd3/reset-database', async (c) => {
       {
         id: '1',
         title: 'Services d\'Assurance',
-        description: 'OMEGA24 CONSULTING, votre partenaire de proximité pour tous vos besoins en assurance.',
+        description: 'Oméga24 Consulting, votre partenaire de proximité pour tous vos besoins en assurance.',
         image: 'figma:asset/68477f6f95a84425423fe12251a74d2fd17f1ce2.png',
         details: [
           'Assurance Santé & Vie',
