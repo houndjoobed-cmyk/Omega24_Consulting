@@ -79,9 +79,14 @@ export function FlyerEditor({ flyer, onSave, onClose }: FlyerEditorProps) {
           // 2. Immediate preview (base64)
           setImagePreviews(prev => [...prev, base64]);
 
-          // 3. Convert base64 to Blob for Storage upload
-          const response = await fetch(base64);
-          const blob = await response.blob();
+          // 3. Convert base64 to Blob for Storage upload (no fetch needed — avoids CSP violation)
+          const base64Data = base64.split(',')[1];
+          const byteCharacters = atob(base64Data);
+          const byteArray = new Uint8Array(byteCharacters.length);
+          for (let i = 0; i < byteCharacters.length; i++) {
+            byteArray[i] = byteCharacters.charCodeAt(i);
+          }
+          const blob = new Blob([byteArray], { type: 'image/jpeg' });
 
           // 4. Upload to Supabase Storage
           const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.jpg`;
